@@ -8,6 +8,9 @@ class DesappAplApplicationTests {
 
 	@Test
 	void contextLoads() {
+		String [] args = new String[1];
+	    args[0] = "test";
+		DesappAplApplication.main(args);
 	}
 
 }
