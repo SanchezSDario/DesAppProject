@@ -4,6 +4,7 @@ plugins {
 	id 'java'
 	id 'idea'
 	id 'eclipse'
+	id 'jacoco'
 }
 
 eclipseJdt {
@@ -48,10 +49,12 @@ jacocoTestReport {
         xml.enabled = true
         html.enabled = true
     }
+    dependsOn test
 }
 
 check.dependsOn jacocoTestReport
 
 test {
 	useJUnitPlatform()
+	finalizedBy jacocoTestReport
 }
