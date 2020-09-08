@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class DesappAplApplicationTests {
 
+	//Just a test
 	@Test
 	void contextLoads() {
 		String [] args = new String[1];
