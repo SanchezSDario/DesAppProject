@@ -19,3 +19,10 @@ jdk: openjdk8
 script:
   - ./gradlew check
   - ./gradlew build check
+  
+deploy:
+  provider: heroku
+  api_key:
+    secure: IyhS1nMTvd10GWAwMCYDVCveuC7XgP8hPHjjIt/rKlsgraZtR3fyDU6XN74J98LBOBOTT9zZUHkt4qL0RpAj8h24IheZF3J5eOAoZE94E5s4HC5HS0ZjQcil7Aa+s3qsibv/GCzlF5bm7x2VQhbULmSsV5UI4wgRT4JiYcdhXkqV3PW+R1vhOle6p8f82Opa3TV1bKZy51fkUlXBPhhUd00Nxj/zLav0zWmnQcBIuKfxxv7y25wbh7my1XeKlLDBbQLbtwaDyOsTlhQKB3SK1kb7laCg7+EX8MHYvcRIlyQ5q/LiBA6r4hZ++55yGV+I/sDP0TWtmXz+40lfuhe68a/bgO5770KUPt3QkHclKR/wEQKagcg32b730MyH2wfRJg3M/rJj3zhRLO/bMjvhfjYlajIMACP0l+x4l8VoBVLdatXEUUTamSs90CyBvZFYdTysCj0OyLAvZc76HFJBvruStw+9KVAOVERYU6RNQY8bHJt4kUzVaqaTDfmGWljKYwR+EHcBM+Amt4YrQGBpbadMEClZA+vFym5StVtxL2BkpxFCtZ4gSASe2dTmRajm0GxdDtiIScbK+1PdJrUNDFpc/M7/2Uoz/jUyFc6eLNHY83xuOkELMtbXQYoC8grR82T4+l7Y0dJHnPR7RSyhjDg86YdTCtdAI+w8G+rFxfU=
+  app:
+    jenami: desapp-back-master
