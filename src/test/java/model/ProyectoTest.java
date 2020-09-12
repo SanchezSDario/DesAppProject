@@ -65,7 +65,7 @@ class ProyectoTest {
 	}
 	
 	@Test
-	void testProyectoTieneUnaLocalidadDe2000HabitantesYUnFactorDe2000EntoncesElCostoTotalEsDe3Millones() {
+	void testProyectoTieneUnaLocalidadDe1500HabitantesYUnFactorDe2000EntoncesElCostoTotalEsDe3Millones() {
 		Localidad unaLocalidad = new Localidad();
 		unaLocalidad.setPoblacion(1500);
 		
