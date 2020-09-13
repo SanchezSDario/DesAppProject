@@ -1,29 +1,23 @@
 language: java
 sudo: false
-
 notifications:
   email: false
-
 install: skip
-
 before_install:
-  - sudo apt-get install jq
-  - wget -O ~/codacy-coverage-reporter-assembly-latest.jar $(curl https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest | jq -r .assets[0].browser_download_url)
-    
+- sudo apt-get install jq
+- wget -O ~/codacy-coverage-reporter-assembly-latest.jar $(curl https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest
+  | jq -r .assets[0].browser_download_url)
 after_success:
-  - java -jar ~/codacy-coverage-reporter-assembly-latest.jar report -l Java -r build/reports/jacoco/test/jacocoTestReport.xml
-  - bash <(curl -Ls https://coverage.codacy.com/get.sh)
-
+- java -jar ~/codacy-coverage-reporter-assembly-latest.jar report -l Java -r build/reports/jacoco/test/jacocoTestReport.xml
+- bash <(curl -Ls https://coverage.codacy.com/get.sh)
 jdk: openjdk8
-
 script:
-  - ./gradlew check
-  - ./gradlew build check
-  
+- "./gradlew check"
+- "./gradlew build check"
 deploy:
   provider: heroku
   api_key:
-    secure: jCVUGKOuKgHc9eiOA6Gpj/1SRks2/KHJDEslLMXGF1KakfxsvsS3+7+HRQiSSZUek7z9LTtXS1m1FhaqMNEMS+d97pLCOMamxA8DExOGhauG2vzHpy6Rli4MbdCcexWcW4uptzu/Vy+NmhiW8gt0FREJX3V3B+r5tiTjrWBTNt89I58/+pzMQ8DEHFaXi+SKvLis718UrEW8BnRpFvHSh8BXwNDFqsYit28tOkAa16wyYZJgHYKwwJ7UeCB0A38BH/O5p8UylBBT9R+fV86XnuFWQVIUdOjXt74llYq+c3f/e4yeNPrgk2F9gCJknucYAuOZ6tN7AqOorlk6tTeIwLySEuaM2UF+0o00at/MIhtp3lfJKhs4/6NHwfLSx+3Ps2akDiD0wqK1OoW3qN0WXAoGJCQZ/hsiAFC6LOj/DqbrD+4BGgUc6he0fHBaeED+/hY00RYnYkj7C5kQM76dcRLEAqPWZz3bywm0LmTHy/P4mthJcJRmfccbdoiHSeN0QcKPi7O0s/wLIsqNLYugdOw8CkUaUsWRjzEdWpTUU6rkr2SfrxS/zSifuUpAf8ADwk2sEixa2qByWQ4Nq9mtnHLeEj/xCf0I3zTAQcgt/zGKdk4XiWe3Jv2tMRlZYuyUUOKqgPBmy0G7p7vL+HR+hMhzWnVp/fCRR82NIedfAF0=
+    secure: GbVH6P/uua5Q/ECdBhMhi6LVHds2O7In7yN6WMO8sSb9WmKeDIbIL+e9nYdQTaZOJYk6BFCbwNs67jnLEsMmpaZngKMsVGU9i6K7luGxYcN4dLRsJfsYh/1TRzNZf/Mf4CFnciO6oH8RRGZ8USHp0ZnOgD+OfhSeK2PS1vlnsJXfTfiHiKILpVeCTUQ+CFilWJ197y8KTi74i+9XaHoHZuGM6WuBkO98Ew45elOjNdNeYM1qoAp3OwfViy4GlLzGAx6HQhkGemUYCFQVrdvkpWpXN3kKZgJ4KYLWBx2TwBj6XD8A3EglC9KXk/7Q2flSJ/2y2s/8AqXor3ENx3N+ZbqvpgEL8xOxTYcdbXqsNBkFLlCnYImjczwmWv0rtmySZrWJdvrvMFgg2fcLtBEvToDKgwnyPv6/EYjFE7zdeN+PLKirxPYLsF4rA3w8eQka1LdUOtpfgm2rK0+bNHig6DOX0SV2Rlt8AZsK021yLNtPHurY7Cbz3gOup5vdCebH+LH/QeRX7bgfH/XOTARIFD34txI8fU7QT/aGn+jm9EpCooOToXby5dKn/ees2RyVqDzN6jyIrK+EW1eCTykB0xREoq6rS69lKWZZUCxYmbXb0D/0vrLIJ0vGoqv+8IXDAwzSdM6YxUkQjEq8xLUUprbuN/DJeSDtruhl8uaBfEk=
   app:
     master: desapp-back-master
     jenami: test-jenami
