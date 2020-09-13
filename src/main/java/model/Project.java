@@ -14,7 +14,7 @@ public class Project {
 	Double totalRecaudado;
 	
 	public Project() {
-		
+		this.totalRecaudado = 0d;
 	}
 
 	public Project(String id, Integer factor, Integer porcentajeMinimoCierre, String nombre, Date fechaInicio,

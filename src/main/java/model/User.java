@@ -1,5 +1,6 @@
 package model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class User {
@@ -11,7 +12,8 @@ public class User {
 	Set<Project> proyectosDonados;
 	
 	public User() {
-		
+		this.proyectosDonados = new HashSet<Project>();
+		this.puntos = 0;
 	}
 
 	public User(String id, String nombre, String apellido, Integer puntos, Set<Project> proyectosDonados) {
