@@ -27,3 +27,4 @@ deploy:
   app:
     master: desapp-back-master
     jenami: test-jenami
+  skip_cleanup: true
