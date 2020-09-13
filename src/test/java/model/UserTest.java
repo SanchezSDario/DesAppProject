@@ -6,11 +6,11 @@ import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
-class UsuarioTest {
+class UserTest {
 
 	@Test
 	void testUsuarioSeCreaConTodosSusValores() {
-		Usuario unUsuario = new Usuario("id", "nombre", "apellido", 0, new HashSet<Proyecto>());
+		User unUsuario = new User("id", "nombre", "apellido", 0, new HashSet<Project>());
 			
 		assertEquals("id", unUsuario.getId());
 		assertEquals("nombre", unUsuario.getNombre());
@@ -21,12 +21,12 @@ class UsuarioTest {
 	
 	@Test
 	void testUsuarioSeCreaYSeAsignanTodosSusValores() {
-		Usuario unUsuario = new Usuario();
+		User unUsuario = new User();
 		unUsuario.setId("id");
 		unUsuario.setNombre("nombre");
 		unUsuario.setApellido("apellido");
 		unUsuario.setPuntos(0);
-		unUsuario.setProyectosDonados(new HashSet<Proyecto>());
+		unUsuario.setProyectosDonados(new HashSet<Project>());
 			
 		assertEquals("id", unUsuario.getId());
 		assertEquals("nombre", unUsuario.getNombre());

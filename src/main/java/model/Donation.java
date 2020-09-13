@@ -1,16 +1,19 @@
 package model;
 
-public class Donacion {
+import java.util.Date;
+
+public class Donation {
 
 	String id;
 	Double cantidad;
 	String comentario;
+	Date fechaDonacion;
 	
-	public Donacion() {
+	public Donation() {
 		
 	}
 
-	public Donacion(String id, Double cantidad, String comentario) {
+	public Donation(String id, Double cantidad, String comentario) {
 		this.id = id;
 		this.cantidad = cantidad;
 		this.comentario = comentario;
@@ -38,5 +41,13 @@ public class Donacion {
 
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
+	}
+
+	public Date getFechaDonacion() {
+		return fechaDonacion;
+	}
+
+	public void setFechaDonacion(Date fechaDonacion) {
+		this.fechaDonacion = fechaDonacion;
 	}
 }

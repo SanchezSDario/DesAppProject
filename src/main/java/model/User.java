@@ -2,19 +2,19 @@ package model;
 
 import java.util.Set;
 
-public class Usuario {
+public class User {
 
 	String id;
 	String nombre;
 	String apellido;
 	Integer puntos;
-	Set<Proyecto> proyectosDonados;
+	Set<Project> proyectosDonados;
 	
-	public Usuario() {
+	public User() {
 		
 	}
 
-	public Usuario(String id, String nombre, String apellido, Integer puntos, Set<Proyecto> proyectosDonados) {
+	public User(String id, String nombre, String apellido, Integer puntos, Set<Project> proyectosDonados) {
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -54,11 +54,21 @@ public class Usuario {
 		this.puntos = puntos;
 	}
 
-	public Set<Proyecto> getProyectosDonados() {
+	public Set<Project> getProyectosDonados() {
 		return proyectosDonados;
 	}
 
-	public void setProyectosDonados(Set<Proyecto> proyectosDonados) {
+	public void setProyectosDonados(Set<Project> proyectosDonados) {
 		this.proyectosDonados = proyectosDonados;
+	}
+	
+	public void addProyectoDonado(Project proyecto) {
+		this.proyectosDonados.add(proyecto);
+	}
+	
+	/* METHODS */
+	
+	public void sumarPuntos(Integer cantidad) {
+		this.puntos += cantidad;
 	}
 }

@@ -2,7 +2,7 @@ package model;
 
 import java.util.Date;
 
-public class Proyecto {
+public class Project {
 
 	String id;
 	Integer factor = 1000;
@@ -10,15 +10,15 @@ public class Proyecto {
 	String nombre;
 	Date fechaInicio;
 	Date fechaFin;
-	Localidad localidad;
+	City localidad;
 	Double totalRecaudado;
 	
-	public Proyecto() {
+	public Project() {
 		
 	}
 
-	public Proyecto(String id, Integer factor, Integer porcentajeMinimoCierre, String nombre, Date fechaInicio,
-			Date fechaFin, Localidad localidad, Double totalRecaudado) {
+	public Project(String id, Integer factor, Integer porcentajeMinimoCierre, String nombre, Date fechaInicio,
+			Date fechaFin, City localidad, Double totalRecaudado) {
 		this.id = id;
 		this.factor = factor;
 		this.porcentajeMinimoCierre = porcentajeMinimoCierre;
@@ -77,11 +77,11 @@ public class Proyecto {
 		this.fechaFin = fechaFin;
 	}
 
-	public Localidad getLocalidad() {
+	public City getLocalidad() {
 		return localidad;
 	}
 
-	public void setLocalidad(Localidad localidad) {
+	public void setLocalidad(City localidad) {
 		this.localidad = localidad;
 	}
 
@@ -96,7 +96,11 @@ public class Proyecto {
 	/*METHODS*/
 	
 	public Double importeTotalParaCompletar() {
-		return (double) (this.factor * this.localidad.getPoblacion());
+		return (double) (this.factor * this.localidad.getPopulation());
+	}
+	
+	public void sumarDonacion(Double cantidad) {
+		this.totalRecaudado += cantidad;
 	}
 }
 

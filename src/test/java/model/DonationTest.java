@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class DonacionTest {
+class DonationTest {
 
 	@Test
 	void testDonacionSeCreaConTodosSusValores() {
-		Donacion unaDonacion = new Donacion("id", 1d, "comentario");
+		Donation unaDonacion = new Donation("id", 1d, "comentario");
 			
 		assertEquals("id", unaDonacion.getId());
 		assertEquals(1d, unaDonacion.getCantidad());
@@ -17,7 +17,7 @@ class DonacionTest {
 	
 	@Test
 	void testDonacionSeCreaYSeAsignanTodosSusValores() {
-		Donacion unaDonacion = new Donacion();
+		Donation unaDonacion = new Donation();
 		unaDonacion.setId("id");
 		unaDonacion.setCantidad(1d);
 		unaDonacion.setComentario("comentario");
