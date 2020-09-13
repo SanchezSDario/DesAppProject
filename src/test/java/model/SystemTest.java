@@ -80,21 +80,21 @@ class SystemTest {
 		city.setPopulation(2000);
 		system.addCity(city);
 		
-		project.setLocalidad(city);
+		project.setCity(city);
 		system.addProject(project);
 		
 		system.addUser(user);
 		
-		donation.setFechaDonacion(new Date());
-		donation.setCantidad(1001d);
+		donation.setDonationDate(new Date());
+		donation.setAmount(1001d);
 		system.addDonation(donation);
 		
 		system.registerDonation(user, project, donation);
 		
-		assertEquals(1, user.getProyectosDonados().size());
-		assertEquals(1001, project.getTotalRecaudado());
+		assertEquals(1, user.getProjectsDonatedTo().size());
+		assertEquals(1001, project.getTotalRaised());
 		assertEquals(1, system.getDonations().size());
-		assertEquals(1001, user.getPuntos());
+		assertEquals(1001, user.getPoints());
 	}
 	
 	@Test
@@ -102,21 +102,21 @@ class SystemTest {
 		city.setPopulation(1999);
 		system.addCity(city);
 		
-		project.setLocalidad(city);
+		project.setCity(city);
 		system.addProject(project);
 		
 		system.addUser(user);
 		
-		donation.setFechaDonacion(new Date());
-		donation.setCantidad(1001d);
+		donation.setDonationDate(new Date());
+		donation.setAmount(1001d);
 		system.addDonation(donation);
 		
 		system.registerDonation(user, project, donation);
 		
-		assertEquals(1, user.getProyectosDonados().size());
-		assertEquals(1001, project.getTotalRecaudado());
+		assertEquals(1, user.getProjectsDonatedTo().size());
+		assertEquals(1001, project.getTotalRaised());
 		assertEquals(1, system.getDonations().size());
-		assertEquals(2002, user.getPuntos());
+		assertEquals(2002, user.getPoints());
 	}
 	
 	@Test
@@ -124,27 +124,27 @@ class SystemTest {
 		city.setPopulation(2000);
 		system.addCity(city);
 		
-		project.setLocalidad(city);
+		project.setCity(city);
 		system.addProject(project);
 		
 		system.addUser(user);
 		
-		donation.setFechaDonacion(new Date());
-		donation.setCantidad(500d);
+		donation.setDonationDate(new Date());
+		donation.setAmount(500d);
 		system.addDonation(donation);
 		
 		system.registerDonation(user, project, donation);
 		
 		Donation otherDonation = new Donation();
-		otherDonation.setFechaDonacion(new Date());
-		otherDonation.setCantidad(1001d);
+		otherDonation.setDonationDate(new Date());
+		otherDonation.setAmount(1001d);
 		system.addDonation(otherDonation);
 		
 		system.registerDonation(user, project, otherDonation);
 		
-		assertEquals(1, user.getProyectosDonados().size());
-		assertEquals(1501, project.getTotalRecaudado());
+		assertEquals(1, user.getProjectsDonatedTo().size());
+		assertEquals(1501, project.getTotalRaised());
 		assertEquals(2, system.getDonations().size());
-		assertEquals(1501, user.getPuntos());
+		assertEquals(1501, user.getPoints());
 	}
 }

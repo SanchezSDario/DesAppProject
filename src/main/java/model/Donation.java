@@ -5,18 +5,18 @@ import java.util.Date;
 public class Donation {
 
 	String id;
-	Double cantidad;
-	String comentario;
-	Date fechaDonacion;
+	Double amount;
+	String comment;
+	Date donationDate;
 	
 	public Donation() {
 		
 	}
 
-	public Donation(String id, Double cantidad, String comentario) {
+	public Donation(String id, Double amount, String comment) {
 		this.id = id;
-		this.cantidad = cantidad;
-		this.comentario = comentario;
+		this.amount = amount;
+		this.comment = comment;
 	}
 
 	public String getId() {
@@ -27,27 +27,27 @@ public class Donation {
 		this.id = id;
 	}
 
-	public Double getCantidad() {
-		return cantidad;
+	public Double getAmount() {
+		return amount;
 	}
 
-	public void setCantidad(Double cantidad) {
-		this.cantidad = cantidad;
+	public void setAmount(Double amount) {
+		this.amount = amount;
 	}
 
-	public String getComentario() {
-		return comentario;
+	public String getComment() {
+		return comment;
 	}
 
-	public void setComentario(String comentario) {
-		this.comentario = comentario;
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
-	public Date getFechaDonacion() {
-		return fechaDonacion;
+	public Date getDonationDate() {
+		return donationDate;
 	}
 
-	public void setFechaDonacion(Date fechaDonacion) {
-		this.fechaDonacion = fechaDonacion;
+	public void setDonationDate(Date donationDate) {
+		this.donationDate = donationDate;
 	}
 }

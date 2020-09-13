@@ -6,27 +6,27 @@ public class Project {
 
 	String id;
 	Integer factor = 1000;
-	Integer porcentajeMinimoCierre;
-	String nombre;
-	Date fechaInicio;
-	Date fechaFin;
-	City localidad;
-	Double totalRecaudado;
+	Integer minClosingPercent;
+	String name;
+	Date startDate;
+	Date endDate;
+	City city;
+	Double totalRaised;
 	
 	public Project() {
-		this.totalRecaudado = 0d;
+		this.totalRaised = 0d;
 	}
 
-	public Project(String id, Integer factor, Integer porcentajeMinimoCierre, String nombre, Date fechaInicio,
-			Date fechaFin, City localidad, Double totalRecaudado) {
+	public Project(String id, Integer factor, Integer minClosingPercent, String name, Date startDate,
+			Date endDate, City city, Double totalRaised) {
 		this.id = id;
 		this.factor = factor;
-		this.porcentajeMinimoCierre = porcentajeMinimoCierre;
-		this.nombre = nombre;
-		this.fechaInicio = fechaInicio;
-		this.fechaFin = fechaFin;
-		this.localidad = localidad;
-		this.totalRecaudado = totalRecaudado;
+		this.minClosingPercent = minClosingPercent;
+		this.name = name;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.city = city;
+		this.totalRaised = totalRaised;
 	}
 
 	public String getId() {
@@ -45,62 +45,62 @@ public class Project {
 		this.factor = factor;
 	}
 
-	public Integer getPorcentajeMinimoCierre() {
-		return porcentajeMinimoCierre;
+	public Integer getMinClosingPercent() {
+		return minClosingPercent;
 	}
 
-	public void setPorcentajeMinimoCierre(Integer porcentajeMinimoCierre) {
-		this.porcentajeMinimoCierre = porcentajeMinimoCierre;
+	public void setMinClosingPercent(Integer minClosingPercent) {
+		this.minClosingPercent = minClosingPercent;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public Date getFechaInicio() {
-		return fechaInicio;
+	public Date getStartDate() {
+		return startDate;
 	}
 
-	public void setFechaInicio(Date fechaInicio) {
-		this.fechaInicio = fechaInicio;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 
-	public Date getFechaFin() {
-		return fechaFin;
+	public Date getEndDate() {
+		return endDate;
 	}
 
-	public void setFechaFin(Date fechaFin) {
-		this.fechaFin = fechaFin;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
-	public City getLocalidad() {
-		return localidad;
+	public City getCity() {
+		return city;
 	}
 
-	public void setLocalidad(City localidad) {
-		this.localidad = localidad;
+	public void setCity(City city) {
+		this.city = city;
 	}
 
-	public Double getTotalRecaudado() {
-		return totalRecaudado;
+	public Double getTotalRaised() {
+		return totalRaised;
 	}
 
-	public void setTotalRecaudado(Double totalRecaudado) {
-		this.totalRecaudado = totalRecaudado;
+	public void setTotalRaised(Double totalRaised) {
+		this.totalRaised = totalRaised;
 	}
 	
 	/*METHODS*/
 	
-	public Double importeTotalParaCompletar() {
-		return (double) (this.factor * this.localidad.getPopulation());
+	public Double getTotalCost() {
+		return (double) (this.factor * this.city.getPopulation());
 	}
 	
-	public void sumarDonacion(Double cantidad) {
-		this.totalRecaudado += cantidad;
+	public void addDonation(Double amount) {
+		this.totalRaised += amount;
 	}
 }
 

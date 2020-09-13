@@ -7,24 +7,24 @@ import org.junit.jupiter.api.Test;
 class DonationTest {
 
 	@Test
-	void testDonacionSeCreaConTodosSusValores() {
-		Donation unaDonacion = new Donation("id", 1d, "comentario");
+	void testDonationIsCreatedWithAllItsValues() {
+		Donation aDonation = new Donation("id", 1d, "comentario");
 			
-		assertEquals("id", unaDonacion.getId());
-		assertEquals(1d, unaDonacion.getCantidad());
-		assertEquals("comentario", unaDonacion.getComentario());
+		assertEquals("id", aDonation.getId());
+		assertEquals(1d, aDonation.getAmount());
+		assertEquals("comentario", aDonation.getComment());
 	}
 	
 	@Test
-	void testDonacionSeCreaYSeAsignanTodosSusValores() {
-		Donation unaDonacion = new Donation();
-		unaDonacion.setId("id");
-		unaDonacion.setCantidad(1d);
-		unaDonacion.setComentario("comentario");
+	void testDonationIsCreatedAndItsValuesAreSet() {
+		Donation aDonation = new Donation();
+		aDonation.setId("id");
+		aDonation.setAmount(1d);
+		aDonation.setComment("comentario");
 			
-		assertEquals("id", unaDonacion.getId());
-		assertEquals(1d, unaDonacion.getCantidad());
-		assertEquals("comentario", unaDonacion.getComentario());
+		assertEquals("id", aDonation.getId());
+		assertEquals(1d, aDonation.getAmount());
+		assertEquals("comentario", aDonation.getComment());
 	}
 
 }

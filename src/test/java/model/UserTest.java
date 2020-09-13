@@ -9,29 +9,29 @@ import org.junit.jupiter.api.Test;
 class UserTest {
 
 	@Test
-	void testUsuarioSeCreaConTodosSusValores() {
-		User unUsuario = new User("id", "nombre", "apellido", 0, new HashSet<Project>());
+	void testUserIsCreatedWithAllItsValues() {
+		User anUser = new User("id", "nombre", "apellido", 0, new HashSet<Project>());
 			
-		assertEquals("id", unUsuario.getId());
-		assertEquals("nombre", unUsuario.getNombre());
-		assertEquals("apellido", unUsuario.getApellido());
-		assertEquals(0, unUsuario.getPuntos());
-		assertEquals(0, unUsuario.getProyectosDonados().size());
+		assertEquals("id", anUser.getId());
+		assertEquals("nombre", anUser.getFirstName());
+		assertEquals("apellido", anUser.getLastName());
+		assertEquals(0, anUser.getPoints());
+		assertEquals(0, anUser.getProjectsDonatedTo().size());
 	}
 	
 	@Test
-	void testUsuarioSeCreaYSeAsignanTodosSusValores() {
+	void testUserIsCreatedAndItsValuesAreSet() {
 		User unUsuario = new User();
 		unUsuario.setId("id");
-		unUsuario.setNombre("nombre");
-		unUsuario.setApellido("apellido");
-		unUsuario.setPuntos(0);
-		unUsuario.setProyectosDonados(new HashSet<Project>());
+		unUsuario.setFirstName("nombre");
+		unUsuario.setLastName("apellido");
+		unUsuario.setPoints(0);
+		unUsuario.setProjectsDonatedTo(new HashSet<Project>());
 			
 		assertEquals("id", unUsuario.getId());
-		assertEquals("nombre", unUsuario.getNombre());
-		assertEquals("apellido", unUsuario.getApellido());
-		assertEquals(0, unUsuario.getPuntos());
-		assertEquals(0, unUsuario.getProyectosDonados().size());
+		assertEquals("nombre", unUsuario.getFirstName());
+		assertEquals("apellido", unUsuario.getLastName());
+		assertEquals(0, unUsuario.getPoints());
+		assertEquals(0, unUsuario.getProjectsDonatedTo().size());
 	}
 }
