@@ -8,17 +8,17 @@ import java.util.Date;
 
 import org.junit.jupiter.api.Test;
 
-class ProyectoTest {
+class ProjectTest {
 
 	@Test
 	void testProyectoSeCreaConTodosSusValores() throws ParseException {
-		Localidad unaLocalidad = new Localidad();
+		City unaLocalidad = new City();
 		
 		SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
 		Date fechaInicio = sdformat.parse("2020-09-12");
 		Date fechaFin = sdformat.parse("2020-09-12");
 		
-		Proyecto unProyecto = new Proyecto("id", 2000, 1, "nombre", fechaInicio, fechaFin, unaLocalidad, 0d);
+		Project unProyecto = new Project("id", 2000, 1, "nombre", fechaInicio, fechaFin, unaLocalidad, 0d);
 			
 		assertEquals("id", unProyecto.getId());
 		assertEquals(2000, unProyecto.getFactor());
@@ -32,13 +32,13 @@ class ProyectoTest {
 	
 	@Test
 	void testProyectoSeCreaYSeAsignanTodosSusValores() throws ParseException {
-		Localidad unaLocalidad = new Localidad();
+		City unaLocalidad = new City();
 		
 		SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
 		Date fechaInicio = sdformat.parse("2020-09-12");
 		Date fechaFin = sdformat.parse("2020-09-12");
 		
-		Proyecto unProyecto = new Proyecto();
+		Project unProyecto = new Project();
 		unProyecto.setId("id");
 		unProyecto.setFactor(2000);
 		unProyecto.setPorcentajeMinimoCierre(1);
@@ -60,16 +60,16 @@ class ProyectoTest {
 	
 	@Test
 	void testProyectoSeCreaConValoresPorDefectoYTieneFactor1000() {
-		Proyecto unProyecto = new Proyecto();
+		Project unProyecto = new Project();
 		assertEquals(1000, unProyecto.getFactor());
 	}
 	
 	@Test
 	void testProyectoTieneUnaLocalidadDe1500HabitantesYUnFactorDe2000EntoncesElCostoTotalEsDe3Millones() {
-		Localidad unaLocalidad = new Localidad();
-		unaLocalidad.setPoblacion(1500);
+		City unaLocalidad = new City();
+		unaLocalidad.setPopulation(1500);
 		
-		Proyecto unProyecto = new Proyecto();
+		Project unProyecto = new Project();
 		unProyecto.setLocalidad(unaLocalidad);
 		unProyecto.setFactor(2000);
 		
