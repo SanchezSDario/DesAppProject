@@ -6,22 +6,22 @@ import java.util.Set;
 public class User {
 
 	String id;
-	String nombre;
-	String apellido;
-	Integer puntos;
-	Set<Project> proyectosDonados;
+	String firstName;
+	String lastName;
+	Integer points;
+	Set<Project> projectsDonatedTo;
 	
 	public User() {
-		this.proyectosDonados = new HashSet<Project>();
-		this.puntos = 0;
+		this.projectsDonatedTo = new HashSet<Project>();
+		this.points = 0;
 	}
 
-	public User(String id, String nombre, String apellido, Integer puntos, Set<Project> proyectosDonados) {
+	public User(String id, String nombre, String apellido, Integer puntos, Set<Project> projectsDonatedTo) {
 		this.id = id;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.puntos = puntos;
-		this.proyectosDonados = proyectosDonados;
+		this.firstName = nombre;
+		this.lastName = apellido;
+		this.points = puntos;
+		this.projectsDonatedTo = projectsDonatedTo;
 	}
 
 	public String getId() {
@@ -32,45 +32,45 @@ public class User {
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setFirstName(String name) {
+		this.firstName = name;
 	}
 
-	public String getApellido() {
-		return apellido;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public Integer getPuntos() {
-		return puntos;
+	public Integer getPoints() {
+		return points;
 	}
 
-	public void setPuntos(Integer puntos) {
-		this.puntos = puntos;
+	public void setPoints(Integer points) {
+		this.points = points;
 	}
 
-	public Set<Project> getProyectosDonados() {
-		return proyectosDonados;
+	public Set<Project> getProjectsDonatedTo() {
+		return projectsDonatedTo;
 	}
 
-	public void setProyectosDonados(Set<Project> proyectosDonados) {
-		this.proyectosDonados = proyectosDonados;
+	public void setProjectsDonatedTo(Set<Project> projectsDonatedTo) {
+		this.projectsDonatedTo = projectsDonatedTo;
 	}
 	
-	public void addProyectoDonado(Project proyecto) {
-		this.proyectosDonados.add(proyecto);
+	public void addProjectDonatedTo(Project project) {
+		this.projectsDonatedTo.add(project);
 	}
 	
 	/* METHODS */
 	
-	public void sumarPuntos(Integer cantidad) {
-		this.puntos += cantidad;
+	public void addPoints(Integer amount) {
+		this.points += amount;
 	}
 }

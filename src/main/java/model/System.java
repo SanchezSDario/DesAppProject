@@ -92,8 +92,8 @@ public class System {
 	/*METHODS*/
 	
 	public Donation registerDonation(User user, Project project, Donation donation){
-		user.addProyectoDonado(project);
-		project.sumarDonacion(donation.getCantidad());
+		user.addProjectDonatedTo(project);
+		project.addDonation(donation.getAmount());
 		this.addDonation(donation);
 		this.addPointsToUser(user, project, donation);
 		
@@ -103,20 +103,20 @@ public class System {
 	public Integer addPointsToUser(User user, Project project, Donation donation) {
 		Integer totalAmount = 0;
 		
-		if(donation.getCantidad() > 1000d) {
-			totalAmount = donation.getCantidad().intValue();
+		if(donation.getAmount() > 1000d) {
+			totalAmount = donation.getAmount().intValue();
 		}
-		if(project.getLocalidad().getPopulation() < 2000) {
-			totalAmount = donation.getCantidad().intValue()*2;
+		if(project.getCity().getPopulation() < 2000) {
+			totalAmount = donation.getAmount().intValue()*2;
 		}
 		
 		Set<Donation> donacionesDelMes = this.donations.stream().filter(don -> 
-			don.getFechaDonacion().getMonth() == donation.getFechaDonacion().getMonth()).collect(Collectors.toSet());
+			don.getDonationDate().getMonth() == donation.getDonationDate().getMonth()).collect(Collectors.toSet());
 		if(donacionesDelMes.size() > 1) {
 			totalAmount += 500;
 		}
 		
-		user.sumarPuntos(totalAmount);
-		return user.getPuntos();
+		user.addPoints(totalAmount);
+		return user.getPoints();
 	}
 }
