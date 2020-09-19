@@ -106,7 +106,7 @@ public class Project {
 	}
 	
 	public Boolean isClosed() {
-		ZoneId zoneId = ZoneId.of( "America/Montreal" );
+		ZoneId zoneId = ZoneId.of( "America/Argentina/Buenos_Aires" );
 		LocalDate date = LocalDate.now(zoneId);
 		return this.endDate.isBefore(date) || this.totalRaised >= this.getTotalCost(); 
 	}
