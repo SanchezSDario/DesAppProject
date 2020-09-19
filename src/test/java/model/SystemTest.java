@@ -157,7 +157,7 @@ class SystemTest {
 	}
 	
 	@Test
-	void testSystemRegistersADonationButProjectIsClosed() {
+	void testSystemRegistersADonationButProjectIsClosedAndExceptionIsThrown() {
 		city.setPopulation(2000);
 		system.addCity(city);
 		
@@ -173,18 +173,8 @@ class SystemTest {
 		donation.setAmount(100d);
 		
 		system.registerDonation(user, project, donation);
-		
-		Donation otherDonation = new Donation();
-		otherDonation.setDonationDate(new Date());
-		otherDonation.setAmount(1100d);
-		system.addDonation(otherDonation);
-		
-		system.registerDonation(user, project, otherDonation);
-		
-		assertEquals(1, user.getProjectsDonatedTo().size());
-		assertEquals(1200, project.getTotalRaised());
-		assertEquals(2, system.getDonations().size());
-		//TODO fix
-		//assertEquals(2700, user.getPoints()); // 2 x 1100 de la segunda donacion + 500 por doble donacion en el mes
+
+		//TODO 
+		//assert Exception thrown
 	}
 }
