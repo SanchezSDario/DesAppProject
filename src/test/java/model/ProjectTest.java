@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,15 +14,14 @@ class ProjectTest {
 	void testProjectIsCreatedWithAllItsValues() throws ParseException {
 		City aCity = new City();
 		
-		SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
-		Date startDate = sdformat.parse("2020-09-12");
-		Date endDate = sdformat.parse("2020-09-12");
+		LocalDate startDate = LocalDate.parse("2020-09-12");
+		LocalDate endDate = LocalDate.parse("2020-09-12");
 		
 		Project aProject = new Project("id", 2000, 1, "nombre", startDate, endDate, aCity, 0d);
 			
 		assertEquals("id", aProject.getId());
 		assertEquals(2000, aProject.getFactor());
-		assertEquals(1, aProject.getMinClosingPercent());
+		assertEquals(1, aProject.getMinClosingPercentage());
 		assertEquals("nombre", aProject.getName());
 		assertEquals(startDate, aProject.getStartDate());
 		assertEquals(endDate, aProject.getEndDate());
@@ -34,14 +33,13 @@ class ProjectTest {
 	void testProjectIsCreatedAndItsValuesAreSet() throws ParseException {
 		City aCity = new City();
 		
-		SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
-		Date startDate = sdformat.parse("2020-09-12");
-		Date endDate = sdformat.parse("2020-09-12");
+		LocalDate startDate = LocalDate.parse("2020-09-12");
+		LocalDate endDate = LocalDate.parse("2020-09-12");
 		
 		Project aProject = new Project();
 		aProject.setId("id");
 		aProject.setFactor(2000);
-		aProject.setMinClosingPercent(1);
+		aProject.setMinClosingPercentage(1);
 		aProject.setName("nombre");
 		aProject.setStartDate(startDate);
 		aProject.setEndDate(endDate);
@@ -50,7 +48,7 @@ class ProjectTest {
 			
 		assertEquals("id", aProject.getId());
 		assertEquals(2000, aProject.getFactor());
-		assertEquals(1, aProject.getMinClosingPercent());
+		assertEquals(1, aProject.getMinClosingPercentage());
 		assertEquals("nombre", aProject.getName());
 		assertEquals(startDate, aProject.getStartDate());
 		assertEquals(endDate, aProject.getEndDate());
@@ -59,9 +57,10 @@ class ProjectTest {
 	}
 	
 	@Test
-	void testProjectIsCreatedWithDefaultValuesAndHasFactorSetTo1000() {
+	void testProjectIsCreatedWithDefaultValuesAndHasFactorSetTo1000AndPercentageSetTo100() {
 		Project aProject = new Project();
 		assertEquals(1000, aProject.getFactor());
+		assertEquals(100, aProject.getMinClosingPercentage());
 	}
 	
 	@Test

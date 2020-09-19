@@ -1,15 +1,17 @@
 package model;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 public class Project {
 
 	String id;
 	Integer factor = 1000;
-	Integer minClosingPercent;
+	Integer minClosingPercentage = 100;
 	String name;
-	Date startDate;
-	Date endDate;
+	LocalDate startDate;
+	LocalDate endDate;
 	City city;
 	Double totalRaised;
 	
@@ -17,11 +19,11 @@ public class Project {
 		this.totalRaised = 0d;
 	}
 
-	public Project(String id, Integer factor, Integer minClosingPercent, String name, Date startDate,
-			Date endDate, City city, Double totalRaised) {
+	public Project(String id, Integer factor, Integer minClosingPercentage, String name, LocalDate startDate,
+			LocalDate endDate, City city, Double totalRaised) {
 		this.id = id;
 		this.factor = factor;
-		this.minClosingPercent = minClosingPercent;
+		this.minClosingPercentage = minClosingPercentage;
 		this.name = name;
 		this.startDate = startDate;
 		this.endDate = endDate;
@@ -45,12 +47,12 @@ public class Project {
 		this.factor = factor;
 	}
 
-	public Integer getMinClosingPercent() {
-		return minClosingPercent;
+	public Integer getMinClosingPercentage() {
+		return minClosingPercentage;
 	}
 
-	public void setMinClosingPercent(Integer minClosingPercent) {
-		this.minClosingPercent = minClosingPercent;
+	public void setMinClosingPercentage(Integer minClosingPercentage) {
+		this.minClosingPercentage = minClosingPercentage;
 	}
 
 	public String getName() {
@@ -61,19 +63,19 @@ public class Project {
 		this.name = name;
 	}
 
-	public Date getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public LocalDate getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
 
@@ -101,6 +103,12 @@ public class Project {
 	
 	public void addDonation(Double amount) {
 		this.totalRaised += amount;
+	}
+	
+	public Boolean isClosed() {
+		ZoneId zoneId = ZoneId.of( "America/Montreal" );
+		LocalDate date = LocalDate.now(zoneId);
+		return this.endDate.isBefore(date) || this.totalRaised >= this.getTotalCost(); 
 	}
 }
 
