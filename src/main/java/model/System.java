@@ -92,6 +92,7 @@ public class System {
 	/*METHODS*/
 	
 	public Donation registerDonation(User user, Project project, Donation donation){
+		//primero project.addDonation(donation) ,con try catch, para saber si esta cerrado
 		user.addProjectDonatedTo(project);
 		project.addDonation(donation.getAmount());
 		this.addDonation(donation);
@@ -110,6 +111,7 @@ public class System {
 			totalAmount = donation.getAmount().intValue()*2;
 		}
 		
+		//TODO fix
 		Set<Donation> donacionesDelMes = this.donations.stream().filter(don -> 
 			don.getDonationDate().getMonth() == donation.getDonationDate().getMonth()).collect(Collectors.toSet());
 		if(donacionesDelMes.size() > 1) {
