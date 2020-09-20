@@ -1,8 +1,6 @@
 package model;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 
 import modelExceptions.ClosingPercentageException;
 import modelExceptions.FactorException;
@@ -115,9 +113,12 @@ public class Project {
 	}
 	
 	public Boolean isClosed() {
-		ZoneId zoneId = ZoneId.of( "America/Argentina/Buenos_Aires" );
-		LocalDate date = LocalDate.now(zoneId);
+		LocalDate date = LocalDate.now();
 		return this.endDate.isBefore(date) || this.totalRaised >= this.getTotalCost(); 
+	}
+	
+	public Integer remainingPercentageToComplete() {
+		return (int) (100 - (this.totalRaised / this.getTotalCost() * 100));
 	}
 }
 

@@ -3,13 +3,11 @@ package model;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import modelExceptions.ClosedProjectException;
 import modelExceptions.ClosingPercentageException;
 import modelExceptions.FactorException;
 
@@ -106,6 +104,20 @@ class ProjectTest {
 		aProject.setEndDate(LocalDate.now().minusDays(1));
 		
 		assertTrue(aProject.isClosed());
+	}
+	
+	@Test
+	void testProjectOf3000000CostHas1500000TotalRaisedThenAlsoHas50PercentageOfCompletion() throws FactorException {
+		City aCity = new City();
+		aCity.setPopulation(1500);
+		
+		Project aProject = new Project();
+		aProject.setCity(aCity);
+		aProject.setFactor(2000);
+		
+		aProject.addDonation(1500000d);
+		
+		assertEquals(50, aProject.remainingPercentageToComplete());
 	}
 	
 	@Test

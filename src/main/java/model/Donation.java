@@ -1,13 +1,13 @@
 package model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Donation {
 
 	String id;
 	Double amount;
 	String comment;
-	Date donationDate;
+	LocalDate donationDate;
 	
 	public Donation() {
 		
@@ -43,11 +43,11 @@ public class Donation {
 		this.comment = comment;
 	}
 
-	public Date getDonationDate() {
+	public LocalDate getDonationDate() {
 		return donationDate;
 	}
 
-	public void setDonationDate(Date donationDate) {
+	public void setDonationDate(LocalDate donationDate) {
 		this.donationDate = donationDate;
 	}
 }
