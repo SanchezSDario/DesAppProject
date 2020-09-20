@@ -6,7 +6,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import modelExceptions.ClosedProjectException;
+import modelExceptions.ClosingPercentageException;
+import modelExceptions.FactorException;
 
 class ProjectTest {
 
@@ -17,11 +22,11 @@ class ProjectTest {
 		LocalDate startDate = LocalDate.parse("2020-09-12");
 		LocalDate endDate = LocalDate.parse("2020-09-12");
 		
-		Project aProject = new Project("id", 2000, 1, "nombre", startDate, endDate, aCity, 0d);
+		Project aProject = new Project("id", 2000, 50, "nombre", startDate, endDate, aCity, 0d);
 			
 		assertEquals("id", aProject.getId());
 		assertEquals(2000, aProject.getFactor());
-		assertEquals(1, aProject.getMinClosingPercentage());
+		assertEquals(50, aProject.getMinClosingPercentage());
 		assertEquals("nombre", aProject.getName());
 		assertEquals(startDate, aProject.getStartDate());
 		assertEquals(endDate, aProject.getEndDate());
@@ -30,7 +35,7 @@ class ProjectTest {
 	}
 	
 	@Test
-	void testProjectIsCreatedAndItsValuesAreSet() throws ParseException {
+	void testProjectIsCreatedAndItsValuesAreSet() throws FactorException, ClosingPercentageException {
 		City aCity = new City();
 		
 		LocalDate startDate = LocalDate.parse("2020-09-12");
@@ -39,7 +44,7 @@ class ProjectTest {
 		Project aProject = new Project();
 		aProject.setId("id");
 		aProject.setFactor(2000);
-		aProject.setMinClosingPercentage(1);
+		aProject.setMinClosingPercentage(50);
 		aProject.setName("nombre");
 		aProject.setStartDate(startDate);
 		aProject.setEndDate(endDate);
@@ -48,7 +53,7 @@ class ProjectTest {
 			
 		assertEquals("id", aProject.getId());
 		assertEquals(2000, aProject.getFactor());
-		assertEquals(1, aProject.getMinClosingPercentage());
+		assertEquals(50, aProject.getMinClosingPercentage());
 		assertEquals("nombre", aProject.getName());
 		assertEquals(startDate, aProject.getStartDate());
 		assertEquals(endDate, aProject.getEndDate());
@@ -64,7 +69,7 @@ class ProjectTest {
 	}
 	
 	@Test
-	void testProjectsWithCityWith1500PeopleAndAFactorOf2000HasATotalCostOf3Millions(){
+	void testProjectsWithCityWith1500PeopleAndAFactorOf2000HasATotalCostOf3Millions() throws FactorException{
 		City aCity = new City();
 		aCity.setPopulation(1500);
 		
@@ -101,5 +106,25 @@ class ProjectTest {
 		aProject.setEndDate(LocalDate.now().minusDays(1));
 		
 		assertTrue(aProject.isClosed());
+	}
+	
+	@Test
+	void testProjectHasInvalidMinClosedPercentageValueAndExceptionIsThrown() {
+		City aCity = new City();
+		aCity.setPopulation(1500);
+		
+		Project aProject = new Project();
+		aProject.setCity(aCity);
+		Assertions.assertThrows(ClosingPercentageException.class, () -> aProject.setMinClosingPercentage(49));
+	}
+	
+	@Test
+	void testProjectHasInvalidFactorValueAndExceptionIsThrown() {
+		City aCity = new City();
+		aCity.setPopulation(1500);
+		
+		Project aProject = new Project();
+		aProject.setCity(aCity);
+		Assertions.assertThrows(FactorException.class, () -> aProject.setFactor(100001));
 	}
 }

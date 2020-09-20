@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
+import modelExceptions.ClosingPercentageException;
+import modelExceptions.FactorException;
+
 public class Project {
 
 	String id;
@@ -43,7 +46,10 @@ public class Project {
 		return factor;
 	}
 
-	public void setFactor(Integer factor) {
+	public void setFactor(Integer factor) throws FactorException {
+		if(factor < 0 || factor > 100000) {
+			throw new FactorException();
+		}
 		this.factor = factor;
 	}
 
@@ -51,7 +57,10 @@ public class Project {
 		return minClosingPercentage;
 	}
 
-	public void setMinClosingPercentage(Integer minClosingPercentage) {
+	public void setMinClosingPercentage(Integer minClosingPercentage) throws ClosingPercentageException {
+		if(minClosingPercentage < 50 || minClosingPercentage > 100) {
+			throw new ClosingPercentageException();
+		}
 		this.minClosingPercentage = minClosingPercentage;
 	}
 
