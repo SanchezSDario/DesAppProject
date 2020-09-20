@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import modelExceptions.ClosedProjectException;
+
 public class System {
 
 	private Set<City> cities;
@@ -91,11 +93,14 @@ public class System {
 	
 	/*METHODS*/
 	
-	public Donation registerDonation(User user, Project project, Donation donation){
-		//primero project.addDonation(donation) ,con try catch, para saber si esta cerrado
+	public Donation registerDonation(User user, Project project, Donation donation) throws ClosedProjectException{
+		if(project.isClosed()) {
+			throw new ClosedProjectException();
+		}
 		user.addProjectDonatedTo(project);
 		project.addDonation(donation.getAmount());
 		this.addDonation(donation);
+		user.addDonation(donation);
 		this.addPointsToUser(user, project, donation);
 		
 		return donation;
@@ -111,8 +116,8 @@ public class System {
 			totalAmount = donation.getAmount().intValue()*2;
 		}
 		
-		//TODO fix
-		Set<Donation> donacionesDelMes = this.donations.stream().filter(don -> 
+		Set<Donation> donacionesDelMes = this.donations.stream().filter(don ->
+			user.getDonationsMade().contains(don) &&
 			don.getDonationDate().getMonth() == donation.getDonationDate().getMonth()).collect(Collectors.toSet());
 		if(donacionesDelMes.size() > 1) {
 			totalAmount += 500;

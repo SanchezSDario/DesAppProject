@@ -7,7 +7,10 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import modelExceptions.ClosedProjectException;
 
 class SystemTest {
 
@@ -77,7 +80,7 @@ class SystemTest {
 	}
 	
 	@Test
-	void testSystemRegistersDonationOf1001FromUserAndUserGetsTheDoubleAmountDonatedAsPoints() {
+	void testSystemRegistersDonationOf1001FromUserAndUserGetsTheDoubleAmountDonatedAsPoints() throws ClosedProjectException {
 		city.setPopulation(2000);
 		system.addCity(city);
 		
@@ -101,7 +104,7 @@ class SystemTest {
 	}
 	
 	@Test
-	void testSystemRegistersDonationToCityWithLessThan2000PopulationFromUserAndUserGetsTheDoubleAmountDonatedAsPoints() {
+	void testSystemRegistersDonationToCityWithLessThan2000PopulationFromUserAndUserGetsTheDoubleAmountDonatedAsPoints() throws ClosedProjectException {
 		city.setPopulation(1999);
 		system.addCity(city);
 		
@@ -125,7 +128,7 @@ class SystemTest {
 	}
 	
 	@Test
-	void testSystemRegistersSecondDonationFromUserInTheSameMonthAndUserReceivesABonusOf500Points() {
+	void testSystemRegistersSecondDonationFromUserInTheSameMonthAndUserReceivesABonusOf500Points() throws ClosedProjectException {
 		city.setPopulation(2000);
 		system.addCity(city);
 		
@@ -152,8 +155,7 @@ class SystemTest {
 		assertEquals(1, user.getProjectsDonatedTo().size());
 		assertEquals(1200, project.getTotalRaised());
 		assertEquals(2, system.getDonations().size());
-		//TODO fix
-		//assertEquals(2700, user.getPoints()); // 2 x 1100 de la segunda donacion + 500 por doble donacion en el mes
+		assertEquals(1600, user.getPoints());
 	}
 	
 	@Test
@@ -166,15 +168,12 @@ class SystemTest {
 		
 		system.addUser(user);
 		
-		project.setStartDate(LocalDate.now());
-		project.setEndDate(LocalDate.now());
+		project.setStartDate(LocalDate.now().minusDays(1));
+		project.setEndDate(LocalDate.now().minusDays(1));
 		
 		donation.setDonationDate(new Date());
 		donation.setAmount(100d);
 		
-		system.registerDonation(user, project, donation);
-
-		//TODO 
-		//assert Exception thrown
+		Assertions.assertThrows(ClosedProjectException.class, () -> system.registerDonation(user, project, donation));
 	}
 }
