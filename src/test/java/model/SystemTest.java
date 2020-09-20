@@ -3,7 +3,6 @@ package model;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -92,7 +91,7 @@ class SystemTest {
 		project.setStartDate(LocalDate.now().minusDays(5));
 		project.setEndDate(LocalDate.now().plusDays(5));
 		
-		donation.setDonationDate(new Date());
+		donation.setDonationDate(LocalDate.now());
 		donation.setAmount(1001d);
 		
 		system.registerDonation(user, project, donation);
@@ -116,7 +115,7 @@ class SystemTest {
 		project.setStartDate(LocalDate.now().minusDays(5));
 		project.setEndDate(LocalDate.now().plusDays(5));
 		
-		donation.setDonationDate(new Date());
+		donation.setDonationDate(LocalDate.now());
 		donation.setAmount(1001d);
 		
 		system.registerDonation(user, project, donation);
@@ -140,13 +139,13 @@ class SystemTest {
 		project.setStartDate(LocalDate.now().minusDays(5));
 		project.setEndDate(LocalDate.now().plusDays(5));
 		
-		donation.setDonationDate(new Date());
+		donation.setDonationDate(LocalDate.now());
 		donation.setAmount(100d);
 		
 		system.registerDonation(user, project, donation);
 		
 		Donation otherDonation = new Donation();
-		otherDonation.setDonationDate(new Date());
+		otherDonation.setDonationDate(LocalDate.now());
 		otherDonation.setAmount(1100d);
 		system.addDonation(otherDonation);
 		
@@ -171,7 +170,7 @@ class SystemTest {
 		project.setStartDate(LocalDate.now().minusDays(1));
 		project.setEndDate(LocalDate.now().minusDays(1));
 		
-		donation.setDonationDate(new Date());
+		donation.setDonationDate(LocalDate.now());
 		donation.setAmount(100d);
 		
 		Assertions.assertThrows(ClosedProjectException.class, () -> system.registerDonation(user, project, donation));
