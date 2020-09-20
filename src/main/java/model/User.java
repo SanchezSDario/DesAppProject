@@ -10,18 +10,21 @@ public class User {
 	String lastName;
 	Integer points;
 	Set<Project> projectsDonatedTo;
+	Set<Donation> donationsMade;
 	
 	public User() {
-		this.projectsDonatedTo = new HashSet<Project>();
 		this.points = 0;
+		this.projectsDonatedTo = new HashSet<Project>();
+		this.donationsMade = new HashSet<Donation>();
 	}
 
-	public User(String id, String nombre, String apellido, Integer puntos, Set<Project> projectsDonatedTo) {
+	public User(String id, String nombre, String apellido, Integer puntos, Set<Project> projectsDonatedTo, Set<Donation> donationsDone) {
 		this.id = id;
 		this.firstName = nombre;
 		this.lastName = apellido;
 		this.points = puntos;
 		this.projectsDonatedTo = projectsDonatedTo;
+		this.donationsMade = donationsDone;
 	}
 
 	public String getId() {
@@ -66,6 +69,18 @@ public class User {
 	
 	public void addProjectDonatedTo(Project project) {
 		this.projectsDonatedTo.add(project);
+	}
+	
+	public Set<Donation> getDonationsMade() {
+		return donationsMade;
+	}
+
+	public void setDonationsMade(Set<Donation> donationsDone) {
+		this.donationsMade = donationsDone;
+	}
+
+	public void addDonation(Donation donation) {
+		this.donationsMade.add(donation);
 	}
 	
 	/* METHODS */
