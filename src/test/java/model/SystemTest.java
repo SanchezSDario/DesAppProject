@@ -9,7 +9,12 @@ import java.util.Set;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import modelExceptions.ClosedProjectException;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.City;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.Donation;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.Project;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.System;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.User;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.modelExceptions.ClosedProjectException;
 
 class SystemTest {
 

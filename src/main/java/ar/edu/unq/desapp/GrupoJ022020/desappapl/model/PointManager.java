@@ -1,4 +1,4 @@
-package model;
+package ar.edu.unq.desapp.GrupoJ022020.desappapl.model;
 
 import java.util.Set;
 import java.util.stream.Collectors;

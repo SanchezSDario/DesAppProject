@@ -1,4 +1,4 @@
-package modelExceptions;
+package ar.edu.unq.desapp.GrupoJ022020.desappapl.modelExceptions;
 
 public class FactorException extends Exception {
 

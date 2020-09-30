@@ -1,9 +1,9 @@
-package model;
+package ar.edu.unq.desapp.GrupoJ022020.desappapl.model;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import modelExceptions.ClosedProjectException;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.modelExceptions.ClosedProjectException;
 
 public class System {
 

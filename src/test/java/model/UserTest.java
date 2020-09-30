@@ -6,6 +6,10 @@ import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.Donation;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.Project;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.User;
+
 class UserTest {
 
 	@Test
