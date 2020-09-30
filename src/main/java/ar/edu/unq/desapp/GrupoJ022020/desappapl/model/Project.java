@@ -1,9 +1,9 @@
-package model;
+package ar.edu.unq.desapp.GrupoJ022020.desappapl.model;
 
 import java.time.LocalDate;
 
-import modelExceptions.ClosingPercentageException;
-import modelExceptions.FactorException;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.modelExceptions.ClosingPercentageException;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.modelExceptions.FactorException;
 
 public class Project {
 

@@ -4,13 +4,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.City;
+
 class CityTest {
 
 	@Test
 	void testCityCreatesWithValues() {
-		City aCity = new City("id", "nombre", "provincia", "estado", 1);
+		City aCity = new City(123l, "nombre", "provincia", "estado", 1);
 			
-		assertEquals("id", aCity.getId());
+		assertEquals(123l, aCity.getId());
 		assertEquals("nombre", aCity.getName());
 		assertEquals("provincia", aCity.getProvince());
 		assertEquals(1, aCity.getPopulation());
@@ -20,13 +22,13 @@ class CityTest {
 	@Test
 	void testCityCreatesAndSetItsValues() {
 		City aCity = new City();
-		aCity.setId("id");
+		aCity.setId(123l);
 		aCity.setName("nombre");
 		aCity.setProvince("provincia");
 		aCity.setConnectivityStatus("estado");
 		aCity.setPopulation(1);
 			
-		assertEquals("id", aCity.getId());
+		assertEquals(123l, aCity.getId());
 		assertEquals("nombre", aCity.getName());
 		assertEquals("provincia", aCity.getProvince());
 		assertEquals(1, aCity.getPopulation());

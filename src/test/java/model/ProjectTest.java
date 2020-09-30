@@ -8,8 +8,10 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import modelExceptions.ClosingPercentageException;
-import modelExceptions.FactorException;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.City;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.Project;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.modelExceptions.ClosingPercentageException;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.modelExceptions.FactorException;
 
 class ProjectTest {
 

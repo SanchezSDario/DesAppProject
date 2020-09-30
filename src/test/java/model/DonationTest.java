@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.Donation;
+
 class DonationTest {
 
 	@Test

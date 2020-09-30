@@ -1,18 +1,33 @@
-package model;
+package ar.edu.unq.desapp.GrupoJ022020.desappapl.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "cities")
 public class City {
 
-	private String id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "id")
+	private Long id;
+	@Column
 	private String name;
+	@Column
 	private String province;
+	@Column
 	private String connectivityStatus;
+	@Column
 	private Integer population;
 	
 	public City() {
 		
 	}
 
-	public City(String id, String name, String province, String connectivityStatus, Integer population) {
+	public City(Long id, String name, String province, String connectivityStatus, Integer population) {
 		this.id = id;
 		this.name = name;
 		this.province = province;
@@ -20,11 +35,11 @@ public class City {
 		this.population = population;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
