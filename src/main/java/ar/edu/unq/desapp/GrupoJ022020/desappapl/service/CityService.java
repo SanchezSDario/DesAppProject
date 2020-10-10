@@ -31,7 +31,7 @@ public class CityService {
 	@Transactional
 	public City update(Long id, City newCity) {
 		City city = this.repository.findById(id).get();
-		city  = newCity;
+		city = newCity;
 		city.setId(id);
 		return this.repository.save(city);
 	}
