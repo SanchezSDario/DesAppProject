@@ -1,5 +1,7 @@
 package ar.edu.unq.desapp.GrupoJ022020.desappapl.service;
 
+import java.time.LocalDate;
+
 import javax.annotation.PostConstruct;
 
 import org.apache.commons.logging.Log;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.City;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.Project;
 
 @Service
 @Transactional
@@ -22,6 +25,8 @@ public class InitServiceInMemory {
 	
 	@Autowired
 	private CityService cityService;
+	@Autowired
+	private ProjectService projectService;
 
 	@PostConstruct
 	public void initialize() {
@@ -32,7 +37,9 @@ public class InitServiceInMemory {
 	}
 
 	private void fireInitialData() {
-		City city = new City(123l, "city", "province", "connectivityStatus", 1);
+		City city = new City("city", "province", "connectivityStatus", 1);
 		cityService.save(city);
+		Project project = new Project(60, 20, "project", LocalDate.parse("2020-09-12"), LocalDate.parse("2020-09-12"), city, 1000d);
+		projectService.save(project);
 	}
 }

@@ -2,27 +2,50 @@ package ar.edu.unq.desapp.GrupoJ022020.desappapl.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.modelExceptions.ClosingPercentageException;
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.modelExceptions.FactorException;
 
+@Entity
+@Table(name = "projects")
 public class Project {
 
-	String id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	@Column(name = "id")
+	private Long id;
+	@Column
 	Integer factor = 1000;
+	@Column
 	Integer minClosingPercentage = 100;
+	@Column
 	String name;
+	@Column
 	LocalDate startDate;
+	@Column
 	LocalDate endDate;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	City city;
+	@Column
 	Double totalRaised;
 	
 	public Project() {
 		this.totalRaised = 0d;
 	}
 
-	public Project(String id, Integer factor, Integer minClosingPercentage, String name, LocalDate startDate,
+	public Project(Integer factor, Integer minClosingPercentage, String name, LocalDate startDate,
 			LocalDate endDate, City city, Double totalRaised) {
-		this.id = id;
 		this.factor = factor;
 		this.minClosingPercentage = minClosingPercentage;
 		this.name = name;
@@ -32,11 +55,11 @@ public class Project {
 		this.totalRaised = totalRaised;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

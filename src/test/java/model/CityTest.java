@@ -10,9 +10,8 @@ class CityTest {
 
 	@Test
 	void testCityCreatesWithValues() {
-		City aCity = new City(123l, "nombre", "provincia", "estado", 1);
+		City aCity = new City("nombre", "provincia", "estado", 1);
 			
-		assertEquals(123l, aCity.getId());
 		assertEquals("nombre", aCity.getName());
 		assertEquals("provincia", aCity.getProvince());
 		assertEquals(1, aCity.getPopulation());

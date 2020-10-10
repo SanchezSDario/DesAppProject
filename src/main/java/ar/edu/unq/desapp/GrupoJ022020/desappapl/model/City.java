@@ -12,7 +12,8 @@ import javax.persistence.Table;
 public class City {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	@Column(name = "id")
 	private Long id;
 	@Column
 	private String name;
@@ -27,8 +28,7 @@ public class City {
 		
 	}
 
-	public City(Long id, String name, String province, String connectivityStatus, Integer population) {
-		this.id = id;
+	public City(String name, String province, String connectivityStatus, Integer population) {
 		this.name = name;
 		this.province = province;
 		this.connectivityStatus = connectivityStatus;
