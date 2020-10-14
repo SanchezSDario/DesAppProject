@@ -28,22 +28,23 @@ public class User {
 	@Column(name = "id")
 	Long id;
 	@Column
+	@ApiModelProperty(required = true)
 	String firstName;
 	@Column
 	String lastName;
 	@Column
+	@ApiModelProperty(required = true)
 	String mail;
 	@Column
+	@ApiModelProperty(required = true)
 	String password;
 	@Column
 	Integer points;
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	@ApiModelProperty(required = true)
 	Set<Project> projectsDonatedTo;
 	@OneToMany(fetch = FetchType.LAZY)
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	@ApiModelProperty(required = true)
 	Set<Donation> donationsMade;
 	
 	public User() {

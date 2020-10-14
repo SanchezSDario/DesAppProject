@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.GrupoJ022020.desappapl.service;
+package ar.edu.unq.desapp.GrupoJ022020.desappapl;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -16,6 +16,10 @@ import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.City;
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.Donation;
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.Project;
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.User;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.service.CityService;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.service.DonationService;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.service.ProjectService;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.service.UserService;
 
 @Service
 @Transactional
@@ -32,6 +36,8 @@ public class InitServiceInMemory {
 	private ProjectService projectService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private DonationService donationService;
 
 
 	@PostConstruct
@@ -47,8 +53,12 @@ public class InitServiceInMemory {
 		cityService.save(city);
 		Project project = new Project(60, 20, "project", LocalDate.parse("1911-10-03"), LocalDate.parse("1911-10-03"), city, 1000d);
 		projectService.save(project);
+		Donation donation = new Donation(123d, "Hola");
+		donationService.save(donation);
 		User user = new User("nombre", "apellido", 1000, "mail", "password", new HashSet<Project>(), new HashSet<Donation>());
 		user.addProjectDonatedTo(project);
+		user.addDonation(donation);
 		userService.save(user);
+		
 	}
 }

@@ -19,8 +19,9 @@ public class Donation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@ApiModelProperty(hidden = true)
 	@Column(name = "id")
-	String id;
+	Long id;
 	@Column
+	@ApiModelProperty(required = true)
 	Double amount;
 	@Column
 	String comment;
@@ -31,17 +32,16 @@ public class Donation {
 		
 	}
 
-	public Donation(String id, Double amount, String comment) {
-		this.id = id;
+	public Donation(Double amount, String comment) {
 		this.amount = amount;
 		this.comment = comment;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
