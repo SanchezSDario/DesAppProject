@@ -3,13 +3,48 @@ package ar.edu.unq.desapp.GrupoJ022020.desappapl.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import io.swagger.annotations.ApiModelProperty;
+
+
+@Entity
+@Table(name = "users")
 public class User {
 
-	String id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@ApiModelProperty(hidden = true)
+	@Column(name = "id")
+	Long id;
+	@Column
+	@ApiModelProperty(required = true)
 	String firstName;
+	@Column
 	String lastName;
+	@Column
+	@ApiModelProperty(required = true)
+	String mail;
+	@Column
+	@ApiModelProperty(required = true)
+	String password;
+	@Column
 	Integer points;
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	Set<Project> projectsDonatedTo;
+	@OneToMany(fetch = FetchType.LAZY)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	Set<Donation> donationsMade;
 	
 	public User() {
@@ -18,20 +53,21 @@ public class User {
 		this.donationsMade = new HashSet<Donation>();
 	}
 
-	public User(String id, String nombre, String apellido, Integer puntos, Set<Project> projectsDonatedTo, Set<Donation> donationsDone) {
-		this.id = id;
+	public User(String nombre, String apellido, Integer puntos, String mail, String password, Set<Project> projectsDonatedTo, Set<Donation> donationsDone) {
 		this.firstName = nombre;
 		this.lastName = apellido;
 		this.points = puntos;
+		this.mail = mail;
+		this.password = password;
 		this.projectsDonatedTo = projectsDonatedTo;
 		this.donationsMade = donationsDone;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -57,6 +93,22 @@ public class User {
 
 	public void setPoints(Integer points) {
 		this.points = points;
+	}
+	
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public Set<Project> getProjectsDonatedTo() {

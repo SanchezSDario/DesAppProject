@@ -15,13 +15,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.modelExceptions.ClosingPercentageException;
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.modelExceptions.FactorException;
+import io.swagger.annotations.ApiModelProperty;
 
 @Entity
 @Table(name = "projects")
 public class Project {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@ApiModelProperty(hidden = true)
 	@Column(name = "id")
 	private Long id;
 	@Column
@@ -31,11 +33,14 @@ public class Project {
 	@Column
 	String name;
 	@Column
+	@ApiModelProperty(required = true)
 	LocalDate startDate;
 	@Column
+	@ApiModelProperty(required = true)
 	LocalDate endDate;
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY, optional = false)
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@ApiModelProperty(required = true)
 	City city;
 	@Column
 	Double totalRaised;
@@ -132,7 +137,7 @@ public class Project {
 	}
 	
 	public void addDonation(Double amount) {
-		this.totalRaised += amount;
+		this.totalRaised += amount; 
 	}
 	
 	public Boolean isClosed() {
