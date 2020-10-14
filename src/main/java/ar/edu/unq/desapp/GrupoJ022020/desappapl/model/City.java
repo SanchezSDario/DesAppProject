@@ -7,12 +7,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name = "cities")
 public class City {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@ApiModelProperty(hidden = true)
 	@Column(name = "id")
 	private Long id;
 	@Column
@@ -22,6 +25,7 @@ public class City {
 	@Column
 	private String connectivityStatus;
 	@Column
+	@ApiModelProperty(required = true)
 	private Integer population;
 	
 	public City() {

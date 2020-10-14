@@ -26,30 +26,26 @@ public class ProjectController {
 		@GetMapping("/api/projects")
 		@ResponseBody
 	    public List<Project> allProjects() {
-	        List<Project> list = projectService.findAll();
-	        return list;
+			return projectService.findAll();
 	    }
 		
 		@GetMapping("/api/project/{id}")
 		@ResponseBody
 	    public Project getProject(@PathVariable("id") Long id) {
-			Project project = projectService.findByID(id);
-	        return project;
+			return projectService.findByID(id);
 	    }
 		
 		@PostMapping(path = "/api/project", consumes = "application/json", produces = "application/json")
 		@ResponseBody
 	    public Project postProject(@RequestBody Project project) {
-	        projectService.save(project);
-	        return project;
+			return projectService.save(project);
 	    }
 		
 		@PutMapping(path = "/api/project/{id}", consumes = "application/json", produces = "application/json")
 		@ResponseBody
 	    public Project putProject(@PathVariable("id") Long id, @RequestBody Project project) {
-	        projectService.update(id, project);
-	        return project;
-		}
+			return projectService.update(id, project);
+	    }
 		
 		@DeleteMapping(path = "/api/project/{id}", produces = "application/json")
 		@ResponseBody

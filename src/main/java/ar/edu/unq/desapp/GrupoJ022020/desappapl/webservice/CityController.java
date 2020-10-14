@@ -26,29 +26,25 @@ public class CityController {
 	@GetMapping("/api/cities")
 	@ResponseBody
     public List<City> allCities() {
-        List<City> list = cityService.findAll();
-        return list;
+        return cityService.findAll();
     }
 	
 	@GetMapping("/api/city/{id}")
 	@ResponseBody
     public City getCity(@PathVariable("id") Long id) {
-        City city = cityService.findByID(id);
-        return city;
+        return cityService.findByID(id);
     }
 	
 	@PostMapping(path = "/api/city", consumes = "application/json", produces = "application/json")
 	@ResponseBody
     public City postCity(@RequestBody City city) {
-        cityService.save(city);
-        return city;
+        return cityService.save(city);
     }
 	
 	@PutMapping(path = "/api/city/{id}", consumes = "application/json", produces = "application/json")
 	@ResponseBody
     public City putCity(@PathVariable("id") Long id, @RequestBody City city) {
-        cityService.update(id, city);
-        return city;
+        return cityService.update(id, city);
 	}
 	
 	@DeleteMapping(path = "/api/city/{id}", produces = "application/json")

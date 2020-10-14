@@ -1,6 +1,7 @@
 package ar.edu.unq.desapp.GrupoJ022020.desappapl.service;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 
 import javax.annotation.PostConstruct;
 
@@ -12,7 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.City;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.Donation;
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.Project;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.User;
 
 @Service
 @Transactional
@@ -27,6 +30,9 @@ public class InitServiceInMemory {
 	private CityService cityService;
 	@Autowired
 	private ProjectService projectService;
+	@Autowired
+	private UserService userService;
+
 
 	@PostConstruct
 	public void initialize() {
@@ -39,7 +45,10 @@ public class InitServiceInMemory {
 	private void fireInitialData() {
 		City city = new City("city", "province", "connectivityStatus", 1);
 		cityService.save(city);
-		Project project = new Project(60, 20, "project", LocalDate.parse("2020-09-12"), LocalDate.parse("2020-09-12"), city, 1000d);
+		Project project = new Project(60, 20, "project", LocalDate.parse("1911-10-03"), LocalDate.parse("1911-10-03"), city, 1000d);
 		projectService.save(project);
+		User user = new User("nombre", "apellido", 1000, "mail", "password", new HashSet<Project>(), new HashSet<Donation>());
+		user.addProjectDonatedTo(project);
+		userService.save(user);
 	}
 }

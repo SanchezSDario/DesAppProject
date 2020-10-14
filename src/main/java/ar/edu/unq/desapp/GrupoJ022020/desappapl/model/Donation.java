@@ -2,11 +2,29 @@ package ar.edu.unq.desapp.GrupoJ022020.desappapl.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import io.swagger.annotations.ApiModelProperty;
+
+@Entity
+@Table(name = "donations")
 public class Donation {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@ApiModelProperty(hidden = true)
+	@Column(name = "id")
 	String id;
+	@Column
 	Double amount;
+	@Column
 	String comment;
+	@Column
 	LocalDate donationDate;
 	
 	public Donation() {
