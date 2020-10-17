@@ -12,22 +12,18 @@ public class PointManager {
 	
 	private static Integer getDonationPoints(User user, Project project, Donation donation) {
 		Integer totalAmount = 0;
-		
 		if(donation.getAmount() > 1000d) {
 			totalAmount = donation.getAmount().intValue();
 		}
-		
 		if(project.getCity().getPopulation() < 2000) {
 			totalAmount = donation.getAmount().intValue()*2;
 		}
-		
 		Set<Donation> donacionesDelMes = user.getDonationsMade().stream().filter(don ->
 			don.getDonationDate().getYear() == donation.getDonationDate().getYear() &&
 			don.getDonationDate().getMonth() == donation.getDonationDate().getMonth()).collect(Collectors.toSet());
 		if(donacionesDelMes.size() > 1) {
 			totalAmount += 500;
 		}
-		
 		return totalAmount;
 	}
 }

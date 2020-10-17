@@ -31,6 +31,7 @@ public class Project {
 	@Column
 	Integer minClosingPercentage = 100;
 	@Column
+	@ApiModelProperty(required = true)
 	String name;
 	@Column
 	@ApiModelProperty(required = true)

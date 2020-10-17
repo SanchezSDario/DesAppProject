@@ -49,16 +49,16 @@ public class InitServiceInMemory {
 	}
 
 	private void fireInitialData() {
-		City city = new City("city", "province", "connectivityStatus", 1);
+		City city = new City("city", "province", "connectivityStatus", 10000);
 		cityService.save(city);
-		Project project = new Project(60, 20, "project", LocalDate.parse("1911-10-03"), LocalDate.parse("1911-10-03"), city, 1000d);
+		Project project = new Project(60, 20, "project", LocalDate.parse("1911-10-03"), LocalDate.parse("2120-10-03"), city, 1000d);
 		projectService.save(project);
 		Donation donation = new Donation(123d, "Hola");
+		donation.setDonationDate(LocalDate.parse("2120-10-03"));
 		donationService.save(donation);
 		User user = new User("nombre", "apellido", 1000, "mail", "password", new HashSet<Project>(), new HashSet<Donation>());
 		user.addProjectDonatedTo(project);
 		user.addDonation(donation);
 		userService.save(user);
-		
 	}
 }

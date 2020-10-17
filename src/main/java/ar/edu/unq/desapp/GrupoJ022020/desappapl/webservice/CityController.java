@@ -32,7 +32,7 @@ public class CityController {
 	@GetMapping("/api/city/{id}")
 	@ResponseBody
     public City getCity(@PathVariable("id") Long id) {
-        return cityService.findByID(id);
+        return cityService.findByID(id); 
     }
 	
 	@PostMapping(path = "/api/city", consumes = "application/json", produces = "application/json")

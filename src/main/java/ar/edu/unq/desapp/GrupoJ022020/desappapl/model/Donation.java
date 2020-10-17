@@ -26,6 +26,7 @@ public class Donation {
 	@Column
 	String comment;
 	@Column
+	@ApiModelProperty(required = true)
 	LocalDate donationDate;
 	
 	public Donation() {
