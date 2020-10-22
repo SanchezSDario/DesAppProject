@@ -15,6 +15,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.modelExceptions.ClosedProjectException;
 import io.swagger.annotations.ApiModelProperty;
 
 
@@ -139,5 +140,17 @@ public class User {
 	
 	public void addPoints(Integer amount) {
 		this.points += amount;
+	}
+	
+	public Donation registerDonation(Project project, Donation donation) throws ClosedProjectException{
+		if(project.isClosed()) {
+			throw new ClosedProjectException();
+		}
+		this.addProjectDonatedTo(project);
+		project.addDonation(donation.getAmount());
+		this.addDonation(donation);
+		PointManager.addPointsToUser(this, project, donation);
+		
+		return donation;
 	}
 }

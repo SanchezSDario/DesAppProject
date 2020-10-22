@@ -19,8 +19,10 @@ public class City {
 	@Column(name = "id")
 	private Long id;
 	@Column
+	@ApiModelProperty(required = true)
 	private String name;
 	@Column
+	@ApiModelProperty(required = true)
 	private String province;
 	@Column
 	private String connectivityStatus;
