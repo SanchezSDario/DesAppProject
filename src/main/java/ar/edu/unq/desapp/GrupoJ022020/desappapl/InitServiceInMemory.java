@@ -120,6 +120,7 @@ public class InitServiceInMemory {
 		donationService.save(donation);
 		User pepita = new User("Pepita", "Paloma", 1000, "pepita@mail.com", "nacer", new HashSet<Project>(), new HashSet<Donation>());
 		pepita.addProjectDonatedTo(project1);
+		pepita.addDonation(donation);
 		userService.save(pepita);
 	}
 }
