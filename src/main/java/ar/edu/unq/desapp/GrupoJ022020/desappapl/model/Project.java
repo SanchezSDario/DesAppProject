@@ -27,24 +27,24 @@ public class Project {
 	@Column(name = "id")
 	private Long id;
 	@Column
-	Integer factor = 1000;
+	private Integer factor = 1000;
 	@Column
-	Integer minClosingPercentage = 100;
-	@Column
-	@ApiModelProperty(required = true)
-	String name;
+	private Integer minClosingPercentage = 100;
 	@Column
 	@ApiModelProperty(required = true)
-	LocalDate startDate;
+	private String name;
 	@Column
 	@ApiModelProperty(required = true)
-	LocalDate endDate;
+	private LocalDate startDate;
+	@Column
+	@ApiModelProperty(required = true)
+	private LocalDate endDate;
 	@OneToOne(fetch = FetchType.LAZY, optional = false)
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@ApiModelProperty(required = true)
-	City city;
+	private City city;
 	@Column
-	Double totalRaised;
+	private Double totalRaised;
 	
 	public Project() {
 		this.totalRaised = 0d;

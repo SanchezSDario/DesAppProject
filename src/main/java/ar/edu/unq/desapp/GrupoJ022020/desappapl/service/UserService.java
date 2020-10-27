@@ -27,17 +27,4 @@ public class UserService {
 	public User save(User user) {
 		return this.repository.save(user);
 	}
-	
-	@Transactional
-	public User update(Long id, User newUser) {
-		User user = this.repository.findById(id).get();
-		user = newUser;
-		user.setId(id);
-		return this.repository.save(user);
-	}
-	
-	@Transactional
-	public void delete(User user) {
-		this.repository.delete(user);
-	}
 }
