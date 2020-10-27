@@ -19,15 +19,15 @@ public class Donation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@ApiModelProperty(hidden = true)
 	@Column(name = "id")
-	Long id;
+	private Long id;
 	@Column
 	@ApiModelProperty(required = true)
-	Double amount;
+	private Double amount;
 	@Column
-	String comment;
+	private String comment;
 	@Column
 	@ApiModelProperty(required = true)
-	LocalDate donationDate;
+	private LocalDate donationDate;
 	
 	public Donation() {
 		

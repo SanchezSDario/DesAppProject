@@ -15,29 +15,16 @@ public class ProjectService {
 	@Autowired
 	private ProjectRepository repository;
 	
-	public List<Project> findAll() {
-		return this.repository.findAll();
+	@Transactional
+	public Project save(Project project) {
+		return this.repository.save(project);
 	}
 	
 	public Project findByID(Long id) {
 		return this.repository.findById(id).get();
 	}
 	
-	@Transactional
-	public Project save(Project project) {
-		return this.repository.save(project);
-	}
-	
-	@Transactional
-	public Project update(Long id, Project newProject) {
-		Project project = this.repository.findById(id).get();
-		project = newProject;
-		project.setId(id);
-		return this.repository.save(project);
-	}
-	
-	@Transactional
-	public void delete(Project project) {
-		this.repository.delete(project);
+	public List<Project> findAll() {
+		return this.repository.findAll();
 	}
 }

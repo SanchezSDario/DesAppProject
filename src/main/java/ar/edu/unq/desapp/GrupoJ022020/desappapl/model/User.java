@@ -27,26 +27,26 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@ApiModelProperty(hidden = true)
 	@Column(name = "id")
-	Long id;
+	private Long id;
 	@Column
 	@ApiModelProperty(required = true)
-	String firstName;
+	private String firstName;
 	@Column
-	String lastName;
-	@Column
-	@ApiModelProperty(required = true)
-	String mail;
+	private String lastName;
 	@Column
 	@ApiModelProperty(required = true)
-	String password;
+	private String mail;
 	@Column
-	Integer points;
+	@ApiModelProperty(required = true)
+	private String password;
+	@Column
+	private Integer points;
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	Set<Project> projectsDonatedTo;
+	private Set<Project> projectsDonatedTo;
 	@OneToMany(fetch = FetchType.LAZY)
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	Set<Donation> donationsMade;
+	private Set<Donation> donationsMade;
 	
 	public User() {
 		this.points = 0;
