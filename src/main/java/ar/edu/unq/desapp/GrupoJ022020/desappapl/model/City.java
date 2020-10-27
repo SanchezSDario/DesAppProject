@@ -1,30 +1,51 @@
-package model;
+package ar.edu.unq.desapp.GrupoJ022020.desappapl.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import io.swagger.annotations.ApiModelProperty;
+
+@Entity
+@Table(name = "cities")
 public class City {
 
-	private String id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@ApiModelProperty(hidden = true)
+	@Column(name = "id")
+	private Long id;
+	@Column
+	@ApiModelProperty(required = true)
 	private String name;
+	@Column
+	@ApiModelProperty(required = true)
 	private String province;
+	@Column
 	private String connectivityStatus;
+	@Column
+	@ApiModelProperty(required = true)
 	private Integer population;
 	
 	public City() {
 		
 	}
 
-	public City(String id, String name, String province, String connectivityStatus, Integer population) {
-		this.id = id;
+	public City(String name, String province, String connectivityStatus, Integer population) {
 		this.name = name;
 		this.province = province;
 		this.connectivityStatus = connectivityStatus;
 		this.population = population;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

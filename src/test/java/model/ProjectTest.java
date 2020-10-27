@@ -8,8 +8,10 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import modelExceptions.ClosingPercentageException;
-import modelExceptions.FactorException;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.City;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.Project;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.modelExceptions.ClosingPercentageException;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.modelExceptions.FactorException;
 
 class ProjectTest {
 
@@ -20,9 +22,8 @@ class ProjectTest {
 		LocalDate startDate = LocalDate.parse("2020-09-12");
 		LocalDate endDate = LocalDate.parse("2020-09-12");
 		
-		Project aProject = new Project("id", 2000, 50, "nombre", startDate, endDate, aCity, 0d);
+		Project aProject = new Project(2000, 50, "nombre", startDate, endDate, aCity, 0d);
 			
-		assertEquals("id", aProject.getId());
 		assertEquals(2000, aProject.getFactor());
 		assertEquals(50, aProject.getMinClosingPercentage());
 		assertEquals("nombre", aProject.getName());
@@ -40,7 +41,7 @@ class ProjectTest {
 		LocalDate endDate = LocalDate.parse("2020-09-12");
 		
 		Project aProject = new Project();
-		aProject.setId("id");
+		aProject.setId(123l);
 		aProject.setFactor(2000);
 		aProject.setMinClosingPercentage(50);
 		aProject.setName("nombre");
@@ -49,7 +50,7 @@ class ProjectTest {
 		aProject.setCity(aCity);
 		aProject.setTotalRaised(0d);
 			
-		assertEquals("id", aProject.getId());
+		assertEquals(123l, aProject.getId());
 		assertEquals(2000, aProject.getFactor());
 		assertEquals(50, aProject.getMinClosingPercentage());
 		assertEquals("nombre", aProject.getName());
