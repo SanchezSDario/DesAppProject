@@ -10,21 +10,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.Donation;
-import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.Project;
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.User;
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.modelExceptions.ClosedProjectException;
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.service.DonationService;
-import ar.edu.unq.desapp.GrupoJ022020.desappapl.service.ProjectService;
-import ar.edu.unq.desapp.GrupoJ022020.desappapl.service.UserService;
 
 @RestController
 @EnableAutoConfiguration
 public class DonationController {
 
-	@Autowired
-    private UserService userService;
-	@Autowired
-    private ProjectService projectService;
 	@Autowired
     private DonationService donationService;
 	
@@ -32,12 +25,7 @@ public class DonationController {
 	@PostMapping(path = "/api/donate", consumes = "application/json", produces = "application/json")
 	@ResponseBody
     public User donate(@RequestParam Long userId, @RequestParam Long projectId, @RequestBody Donation donation) throws ClosedProjectException {
-		User user = userService.findByID(userId);
-		Project project = projectService.findByID(projectId);
-		user.registerDonation(project, donation);
-		donationService.save(donation);
-		projectService.save(project);
-		return userService.save(user);
-    }
+		return donationService.donate(userId, projectId, donation);
+	}
 
 }
