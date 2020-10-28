@@ -1,7 +1,5 @@
 package ar.edu.unq.desapp.GrupoJ022020.desappapl.aspects;
 
-import java.util.Arrays;
-
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -28,4 +26,13 @@ public class LoggingAspect {
         String methodName = jp.getSignature().getName();
         logger.info("Executing method: " + methodName);
     }
+    
+    @Around("loggableMethods()")
+	public Object logExecutionTimeAnnotation(ProceedingJoinPoint joinPoint) throws Throwable {
+		final long start = System.currentTimeMillis();
+		final Object proceed = joinPoint.proceed();
+		final long executionTime = System.currentTimeMillis() - start;
+		logger.info(joinPoint.getSignature() + " executed in " + executionTime + "ms");
+		return proceed;
+	}
 }
