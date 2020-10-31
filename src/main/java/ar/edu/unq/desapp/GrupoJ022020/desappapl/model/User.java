@@ -49,6 +49,7 @@ public class User {
 	private Set<Donation> donationsMade;
 	
 	public User() {
+		this.lastName = "";
 		this.points = 0;
 		this.projectsDonatedTo = new HashSet<Project>();
 		this.donationsMade = new HashSet<Donation>();
