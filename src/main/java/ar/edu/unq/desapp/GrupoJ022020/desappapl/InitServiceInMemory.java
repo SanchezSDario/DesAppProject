@@ -117,6 +117,12 @@ public class InitServiceInMemory {
 		Project project16 = new Project(60, 63, "Haro Conecta", LocalDate.parse("2020-01-01"), LocalDate.parse("2021-06-29"), city16, 1000d);
 		projectService.save(project16);
 		
+		City city17 = new City("Ushuaia", "Tierra del Fuego", "Conectado", 1500);
+		cityService.save(city17);
+		
+		Project project17 = new Project(60, 63, "Ushuaia Conecta", LocalDate.parse("2020-01-01"), LocalDate.parse("2021-06-29"), city17, 1500000d);
+		projectService.save(project17);
+		
 		Donation donation = new Donation(1000d, "Nueva donacion");
 		donation.setDonationDate(LocalDate.parse("2020-10-03"));
 		donationService.save(donation);
@@ -124,6 +130,7 @@ public class InitServiceInMemory {
 		pepita.addProjectDonatedTo(project1);
 		pepita.addDonation(donation);
 		userService.save(pepita);
+		
 		User admin = new UserAdmin("Admin", "Admin", 1000, "admin@admin.com", "admin", "admin", "admin", new HashSet<Project>(), new HashSet<Donation>());
 		userService.save(admin);
 	}

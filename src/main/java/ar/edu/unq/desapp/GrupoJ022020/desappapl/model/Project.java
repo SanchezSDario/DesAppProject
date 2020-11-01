@@ -62,6 +62,7 @@ public class Project {
 		this.endDate = endDate;
 		this.city = city;
 		this.totalRaised = totalRaised;
+		this.isClosed = false;
 	}
 
 	public Long getId() {
