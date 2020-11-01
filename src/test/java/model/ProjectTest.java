@@ -80,34 +80,6 @@ class ProjectTest {
 	}
 	
 	@Test
-	void testProjectWithTotalRaisedSameAsTotalCostShouldBeClosed() {	
-		City aCity = new City();
-		aCity.setPopulation(1500);
-		
-		Project aProject = new Project();
-		aProject.setCity(aCity);
-		//It's still on date, but has raised what was needed
-		aProject.setEndDate(LocalDate.now());
-		aProject.setTotalRaised(1500000d);
-
-		assertTrue(aProject.isClosed());
-	}
-	
-	@Test
-	void testProjectThatReachedEndDateShouldBeClosed() {
-		City aCity = new City();
-		aCity.setPopulation(1500);
-		
-		Project aProject = new Project();
-		aProject.setCity(aCity);
-		aProject.setTotalRaised(15d);
-		//Hasn't raised what was needed, but arrived to end date
-		aProject.setEndDate(LocalDate.now().minusDays(1));
-		
-		assertTrue(aProject.isClosed());
-	}
-	
-	@Test
 	void testProjectOf3000000CostHas1500000TotalRaisedThenAlsoHas50PercentageOfCompletion() throws FactorException {
 		City aCity = new City();
 		aCity.setPopulation(1500);

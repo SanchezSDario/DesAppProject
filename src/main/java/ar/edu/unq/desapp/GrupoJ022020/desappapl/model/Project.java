@@ -45,9 +45,12 @@ public class Project {
 	private City city;
 	@Column
 	private Double totalRaised;
+	@Column
+	private Boolean isClosed;
 	
 	public Project() {
 		this.totalRaised = 0d;
+		this.isClosed = false;
 	}
 
 	public Project(Integer factor, Integer minClosingPercentage, String name, LocalDate startDate,
@@ -131,19 +134,22 @@ public class Project {
 		this.totalRaised = totalRaised;
 	}
 	
-	/*METHODS*/
+	public Boolean getIsClosed() {
+		return isClosed;
+	}
+
+	public void setIsClosed(Boolean isClosed) {
+		this.isClosed = isClosed;
+	}
 	
+	/*METHODS*/
+
 	public Double getTotalCost() {
 		return (double) (this.factor * this.city.getPopulation());
 	}
 	
 	public void addDonation(Double amount) {
 		this.totalRaised += amount; 
-	}
-	
-	public Boolean isClosed() {
-		LocalDate date = LocalDate.now();
-		return this.endDate.isBefore(date) || this.totalRaised >= this.getTotalCost(); 
 	}
 	
 	public Integer remainingPercentageToComplete() {

@@ -30,14 +30,21 @@ public class UserController {
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@PostMapping(path = "/api/login", consumes = "application/json", produces = "application/json")
 	@ResponseBody
-    public User loginUser(@RequestParam String userMail, @RequestParam String userPass) throws Exception {
-		return userService.login(userMail, userPass);
+    public User loginUser(@RequestParam String userMail, 
+    					  @RequestParam String userName, 
+    					  @RequestParam String userPass) throws Exception {
+		return userService.login(userMail, userName, userPass);
     }
 	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@PostMapping(path = "/api/register", consumes = "application/json", produces = "application/json")
 	@ResponseBody
-    public User registerUser(@RequestParam String userMail, @RequestParam String userPass, @RequestParam String userFirstName) throws Exception {
-		return userService.register(userMail, userPass, userFirstName);
+    public User registerUser(@RequestParam String userMail, 
+    						 @RequestParam String userName,
+    						 @RequestParam String userPass, 
+    						 @RequestParam String userFirstName,
+    						 @RequestParam(required=false) String userLastName,
+    						 @RequestParam(required=false) String userNickName) throws Exception {
+		return userService.register(userMail, userName, userPass, userFirstName, userLastName, userNickName);
     }
 }

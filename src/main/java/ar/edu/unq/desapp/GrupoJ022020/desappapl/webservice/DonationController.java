@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.Donation;
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.User;
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.modelExceptions.ClosedProjectException;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.modelExceptions.UserTypeActionException;
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.service.DonationService;
 
 @RestController
@@ -24,7 +25,7 @@ public class DonationController {
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@PostMapping(path = "/api/donate", consumes = "application/json", produces = "application/json")
 	@ResponseBody
-    public User donate(@RequestParam Long userId, @RequestParam Long projectId, @RequestBody Donation donation) throws ClosedProjectException {
+    public User donate(@RequestParam Long userId, @RequestParam Long projectId, @RequestBody Donation donation) throws ClosedProjectException, UserTypeActionException {
 		return donationService.donate(userId, projectId, donation);
 	}
 

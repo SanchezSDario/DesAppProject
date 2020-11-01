@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.ServiceExceptions.*;
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.User;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.UserDonor;
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.persistence.UserRepository;
 
 @Service
@@ -32,29 +33,35 @@ public class UserService {
 	}
 	
 	@Transactional
-	public User login(String userMail, String userPass) throws LoginIncorrectMailOrPasswordException, InvalidEmailException {
-		validateEmail(userMail);
+	public User login(String userMail, String userName, String userPass) throws LoginIncorrectMailUserNameOrPasswordException, InvalidEmailException {
 		List<User> allUsers = this.findAll();
-		List<User> filteredUser = allUsers.stream().filter(user -> user.getMail().equals(userMail) && user.getPassword().equals(userPass)).collect(Collectors.toList());
+		List<User> filteredUser = allUsers.stream().filter(user -> (user.getMail().equals(userMail) || user.getUserName().equals(userName)) && user.getPassword().equals(userPass)).collect(Collectors.toList());
 		if(!filteredUser.isEmpty()) {
 			return filteredUser.get(0);
 		}
-		throw new LoginIncorrectMailOrPasswordException();
+		throw new LoginIncorrectMailUserNameOrPasswordException();
 	}
 	
 	@Transactional
-	public User register(String userMail, String userPass, String userFirstName) throws LoginIncorrectMailOrPasswordException, InvalidEmailException, RegisterEmailAlreadyExistsException {
+	public User register(String userMail, String userName, String userPass, String userFirstName, String userLastName, String userNickName) throws LoginIncorrectMailUserNameOrPasswordException, InvalidEmailException, RegisterEmailOrUserNameAlreadyExistsException {
 		validateEmail(userMail);
 		List<User> allUsers = this.findAll();
-		List<User> filteredUser = allUsers.stream().filter(user -> user.getMail().equals(userMail)).collect(Collectors.toList());
+		List<User> filteredUser = allUsers.stream().filter(user -> user.getMail().equals(userMail) || user.getUserName().equals(userName)).collect(Collectors.toList());
 		if(filteredUser.isEmpty()) {
-			User newUser = new User();
+			userLastName = userLastName == null ? "" : userLastName;
+			userNickName = userNickName == null ? "" : userNickName;
+			User newUser = new UserDonor();
 			newUser.setMail(userMail);
+			newUser.setUserName(userName);
+			newUser.setLastName(userLastName);
 			newUser.setPassword(userPass);
 			newUser.setFirstName(userFirstName);
+			if(userNickName.isEmpty()) 
+				userNickName = userFirstName + userLastName;
+			newUser.setNickName(userNickName);
 			return this.save(newUser);
 		}
-		throw new RegisterEmailAlreadyExistsException();
+		throw new RegisterEmailOrUserNameAlreadyExistsException();
 	}
 	
 	public static void validateEmail(String email) throws InvalidEmailException { 
