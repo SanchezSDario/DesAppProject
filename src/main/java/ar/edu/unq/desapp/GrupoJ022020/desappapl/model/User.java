@@ -3,12 +3,17 @@ package ar.edu.unq.desapp.GrupoJ022020.desappapl.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -16,18 +21,25 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.modelExceptions.ClosedProjectException;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.modelExceptions.UnableToCloseProjectException;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.modelExceptions.UserTypeActionException;
 import io.swagger.annotations.ApiModelProperty;
 
 
 @Entity
+@Inheritance
 @Table(name = "users")
-public class User {
+public abstract class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@ApiModelProperty(hidden = true)
 	@Column(name = "id")
 	private Long id;
+	@Column
+	@Enumerated(EnumType.STRING)
+	@Access(AccessType.FIELD)
+	protected UserProfile profile;
 	@Column
 	@ApiModelProperty(required = true)
 	private String firstName;
@@ -36,6 +48,11 @@ public class User {
 	@Column
 	@ApiModelProperty(required = true)
 	private String mail;
+	@Column
+	@ApiModelProperty(required = true)
+	private String userName;
+	@Column
+	private String nickName;
 	@Column
 	@ApiModelProperty(required = true)
 	private String password;
@@ -49,16 +66,28 @@ public class User {
 	private Set<Donation> donationsMade;
 	
 	public User() {
+		this.lastName = "";
+		this.nickName = "";
 		this.points = 0;
 		this.projectsDonatedTo = new HashSet<Project>();
 		this.donationsMade = new HashSet<Donation>();
 	}
 
-	public User(String nombre, String apellido, Integer puntos, String mail, String password, Set<Project> projectsDonatedTo, Set<Donation> donationsDone) {
+	public User(String nombre, 
+				String apellido, 
+				Integer puntos, 
+				String mail,
+				String userName,
+				String nickName,
+				String password, 
+				Set<Project> projectsDonatedTo, 
+				Set<Donation> donationsDone) {
 		this.firstName = nombre;
 		this.lastName = apellido;
 		this.points = puntos;
 		this.mail = mail;
+		this.userName = userName;
+		this.nickName = nickName;
 		this.password = password;
 		this.projectsDonatedTo = projectsDonatedTo;
 		this.donationsMade = donationsDone;
@@ -136,21 +165,37 @@ public class User {
 		this.donationsMade.add(donation);
 	}
 	
-	/* METHODS */
+	public UserProfile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(UserProfile profile) {
+		this.profile = profile;
+	}
 	
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+	
+	/* METHODS */
+
 	public void addPoints(Integer amount) {
 		this.points += amount;
 	}
 	
-	public Donation registerDonation(Project project, Donation donation) throws ClosedProjectException{
-		if(project.isClosed()) {
-			throw new ClosedProjectException();
-		}
-		this.addProjectDonatedTo(project);
-		project.addDonation(donation.getAmount());
-		this.addDonation(donation);
-		PointManager.addPointsToUser(this, project, donation);
-		
-		return donation;
-	}
+	public abstract Donation registerDonation(Project project, Donation donation) throws ClosedProjectException, UserTypeActionException;
+	
+	public abstract Project closeProject(Project project) throws UnableToCloseProjectException, UserTypeActionException;	
 }

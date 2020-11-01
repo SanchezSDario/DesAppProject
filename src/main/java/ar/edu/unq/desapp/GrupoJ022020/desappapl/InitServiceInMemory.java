@@ -16,6 +16,8 @@ import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.City;
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.Donation;
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.Project;
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.User;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.UserAdmin;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.UserDonor;
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.service.CityService;
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.service.DonationService;
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.service.ProjectService;
@@ -115,12 +117,21 @@ public class InitServiceInMemory {
 		Project project16 = new Project(60, 63, "Haro Conecta", LocalDate.parse("2020-01-01"), LocalDate.parse("2021-06-29"), city16, 1000d);
 		projectService.save(project16);
 		
+		City city17 = new City("Ushuaia", "Tierra del Fuego", "Conectado", 1500);
+		cityService.save(city17);
+		
+		Project project17 = new Project(60, 63, "Ushuaia Conecta", LocalDate.parse("2020-01-01"), LocalDate.parse("2021-06-29"), city17, 1500000d);
+		projectService.save(project17);
+		
 		Donation donation = new Donation(1000d, "Nueva donacion");
 		donation.setDonationDate(LocalDate.parse("2020-10-03"));
 		donationService.save(donation);
-		User pepita = new User("Pepita", "Paloma", 1000, "pepita@mail.com", "nacer", new HashSet<Project>(), new HashSet<Donation>());
+		User pepita = new UserDonor("Pepita", "Paloma", 1000, "pepita@mail.com", "pepitaDonor", "Pepita", "nacer", new HashSet<Project>(), new HashSet<Donation>());
 		pepita.addProjectDonatedTo(project1);
 		pepita.addDonation(donation);
 		userService.save(pepita);
+		
+		User admin = new UserAdmin("Admin", "Admin", 1000, "admin@admin.com", "admin", "admin", "admin", new HashSet<Project>(), new HashSet<Donation>());
+		userService.save(admin);
 	}
 }
