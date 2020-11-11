@@ -14,6 +14,7 @@ import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.UserDonor;
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.persistence.UserRepository;
 
 @Service
+@Transactional
 public class UserService {
 
 	@Autowired

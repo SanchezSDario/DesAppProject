@@ -34,7 +34,7 @@ public class UserDonor extends User{
 			throw new ClosedProjectException();
 		}
 		this.addProjectDonatedTo(project);
-		project.addDonation(donation.getAmount());
+		project.addDonation(donation);
 		this.addDonation(donation);
 		PointManager.addPointsToUser(this, project, donation);
 		
