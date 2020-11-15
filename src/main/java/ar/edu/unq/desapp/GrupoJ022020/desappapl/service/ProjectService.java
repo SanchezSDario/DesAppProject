@@ -14,7 +14,6 @@ import ar.edu.unq.desapp.GrupoJ022020.desappapl.modelExceptions.UserTypeActionEx
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.persistence.ProjectRepository;
 
 @Service
-@Transactional
 public class ProjectService {
 
 	@Autowired
@@ -36,14 +35,18 @@ public class ProjectService {
 		return this.save(project);
 	}
 	
+
+	@Transactional
 	public Project findByID(Long id) {
 		return this.repository.findById(id).get();
 	}
 	
+	@Transactional
 	public List<Project> findAll() {
 		return this.repository.findAll();
 	}
 	
+	@Transactional
 	public List<Project> getProjectsWithOldestDonationDate(){
 		List<Project> allProjects = this.repository.findAll();
 		List<Project> projectList = allProjects.stream().filter(project -> project.getDonationsRegistered().isEmpty()).limit(10).collect(Collectors.toList());

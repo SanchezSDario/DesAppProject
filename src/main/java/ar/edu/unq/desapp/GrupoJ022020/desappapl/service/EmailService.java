@@ -18,7 +18,6 @@ import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.User;
 
 @Component
 @Service
-@Transactional
 public class EmailService{
 
 	@Autowired
@@ -30,7 +29,7 @@ public class EmailService{
 	@Autowired
     private UserService userService;
 
-    public void sendEmail(String[] to, String subject, String content) {
+	private void sendEmail(String[] to, String subject, String content) {
 
         SimpleMailMessage email = new SimpleMailMessage();
 
@@ -41,6 +40,7 @@ public class EmailService{
         mailSender.send(email);
     }
     
+	@Transactional
     @Scheduled(cron = "0 0 9 * * 2", zone = "America/Argentina/Buenos_Aires")
     public void sendTop10DonationsAndTop10Cities() {
     	String mostExpensiveDonationsMessage = "Mejores donaciones: \n";
@@ -69,6 +69,7 @@ public class EmailService{
 	    			   "Informe diario \n\n" + mostExpensiveDonationsMessage + "\n" + citiesWithOldestDonationsDateMessage);
     }
     
+	@Transactional
     public void sendProjectClosedEmail(Long projectId) {
     	Project closedProject = projectService.findByID(projectId);
     	List<User> donorUsers = userService.findAll().stream().filter(user -> user.getProjectsDonatedTo().contains(closedProject)).collect(Collectors.toList());

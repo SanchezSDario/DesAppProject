@@ -38,9 +38,11 @@ public class UserAdmin extends User{
 	@Override
 	public Project closeProject(Project project) throws UnableToCloseProjectException, UserTypeActionException {
 		LocalDate date = LocalDate.now();
-		if(project.getEndDate().isBefore(date) || 
+		if(
+		   !project.getIsClosed() &&
+		   (project.getEndDate().isBefore(date) || 
 		   project.getTotalRaised() >= project.getTotalCost() ||
-		   (project.getTotalRaised() / project.getTotalCost() * 100) >= project.getMinClosingPercentage()
+		   (project.getTotalRaised() / project.getTotalCost() * 100) >= project.getMinClosingPercentage())
 		   ) {
 			project.setIsClosed(true);
 			return project;

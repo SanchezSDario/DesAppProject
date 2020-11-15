@@ -10,12 +10,12 @@ import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.City;
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.persistence.CityRepository;
 
 @Service
-@Transactional
 public class CityService {
 
 	@Autowired
 	private CityRepository repository;
-	
+
+	@Transactional
 	public List<City> findAll() {
 		return this.repository.findAll();
 	}
