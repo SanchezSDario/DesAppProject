@@ -42,8 +42,8 @@ public class UserController {
     public User registerUser(@RequestParam String userMail, 
     						 @RequestParam String userName,
     						 @RequestParam String userPass, 
-    						 @RequestParam String userFirstName,
-    						 @RequestParam(required=false) String userLastName,
+    						 @RequestParam(required=false) String userFirstName,
+    						 @RequestParam String userLastName,
     						 @RequestParam(required=false) String userNickName) throws Exception {
 		return userService.register(userMail, userName, userPass, userFirstName, userLastName, userNickName);
     }
