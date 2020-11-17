@@ -19,10 +19,12 @@ public class UserService {
 	@Autowired
 	private UserRepository repository;
 	
+	@Transactional
 	public List<User> findAll() {
 		return this.repository.findAll();
 	}
 	
+	@Transactional
 	public User findByID(Long id) {
 		return this.repository.findById(id).get();
 	}
@@ -64,7 +66,7 @@ public class UserService {
 		throw new RegisterEmailOrUserNameAlreadyExistsException();
 	}
 	
-	public static void validateEmail(String email) throws InvalidEmailException { 
+	private static void validateEmail(String email) throws InvalidEmailException { 
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+ 
                             "[a-zA-Z0-9_+&*-]+)*@" + 
                             "(?:[a-zA-Z0-9-]+\\.)+[a-z" + 

@@ -14,7 +14,8 @@ public class CityService {
 
 	@Autowired
 	private CityRepository repository;
-	
+
+	@Transactional
 	public List<City> findAll() {
 		return this.repository.findAll();
 	}

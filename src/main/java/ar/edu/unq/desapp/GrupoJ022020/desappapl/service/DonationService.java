@@ -1,5 +1,8 @@
 package ar.edu.unq.desapp.GrupoJ022020.desappapl.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,5 +39,12 @@ public class DonationService {
 		this.repository.save(donation);
 		projectService.save(project);
 		return userService.save(user);
+	}
+	
+	@Transactional
+	public List<Donation> getExpensiveDonations(){
+		return this.repository.findAll().stream()
+								 		.sorted((donation1, donation2) -> Double.compare(donation2.getAmount(), donation1.getAmount()))
+								 		.limit(10).collect(Collectors.toList());
 	}
 }

@@ -6,6 +6,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.CodeSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
@@ -17,14 +18,26 @@ import org.springframework.stereotype.Component;
 public class LoggingAspect {
 	private static Logger logger = LoggerFactory.getLogger(LoggingAspect.class.getName());
 
-    @Pointcut("within(ar.edu.unq.desapp.GrupoJ022020.desappapl..*) || @annotation(ar.edu.unq.desapp.GrupoJ022020.desappapl.aspects.LogExecutionTime)")
+    @Pointcut("within(ar.edu.unq.desapp.GrupoJ022020.desappapl.webservice.*) || @annotation(ar.edu.unq.desapp.GrupoJ022020.desappapl.aspects.LogExecutionTime)")
     public void loggableMethods() {
     }
 
     @Before("loggableMethods()")
     public void logMethod(JoinPoint jp) {
-        String methodName = jp.getSignature().getName();
-        logger.info("Executing method: " + methodName);
+    	CodeSignature methodSignature = (CodeSignature) jp.getSignature();
+        String methodName = methodSignature.getName();
+        String methodParameters = "";
+        if (methodSignature.getParameterNames() != null) {
+        	String[] methodSignatureParameters = methodSignature.getParameterNames();
+        	methodParameters = " with parameters(";
+        	for(int i = 0; i < methodSignatureParameters.length; i++)
+        		methodParameters +=  methodSignatureParameters[i] + "=" + jp.getArgs()[i] + ", ";
+        	if(!methodParameters.equals(" with parameters("))
+        		methodParameters = methodParameters.substring(0, methodParameters.length()-2) + ")";
+        	else
+        		methodParameters = "";
+        }
+        logger.info("Executing method: '" + methodName + "'" + methodParameters);
     }
     
     @Around("loggableMethods()")
