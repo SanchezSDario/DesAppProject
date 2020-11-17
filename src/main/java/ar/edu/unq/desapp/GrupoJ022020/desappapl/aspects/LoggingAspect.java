@@ -32,7 +32,7 @@ public class LoggingAspect {
         	methodParameters = " with parameters(";
         	for(int i = 0; i < methodSignatureParameters.length; i++)
         		methodParameters +=  methodSignatureParameters[i] + "=" + jp.getArgs()[i] + ", ";
-        	if(methodParameters != " with parameters(")
+        	if(!methodParameters.equals(" with parameters("))
         		methodParameters = methodParameters.substring(0, methodParameters.length()-2) + ")";
         	else
         		methodParameters = "";

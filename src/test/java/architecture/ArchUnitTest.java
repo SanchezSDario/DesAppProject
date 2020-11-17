@@ -2,7 +2,7 @@ package architecture;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 
-import javax.persistence.Entity;import javax.persistence.Persistence;
+import javax.persistence.Entity;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.stereotype.Controller;
