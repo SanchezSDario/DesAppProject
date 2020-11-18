@@ -25,6 +25,17 @@ public class UserService {
 	}
 	
 	@Transactional
+	public User findByEmail(String email) throws UserEmailNotFoundException {
+		User aUser = this.repository.findByEmailAddress(email);
+		if(aUser != null) {
+			return aUser;
+		}
+		else {
+			throw new UserEmailNotFoundException();
+		}
+	}
+	
+	@Transactional
 	public User findByID(Long id) {
 		return this.repository.findById(id).get();
 	}

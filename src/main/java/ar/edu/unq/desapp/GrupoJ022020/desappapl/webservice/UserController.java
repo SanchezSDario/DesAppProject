@@ -27,6 +27,12 @@ public class UserController {
 		return userService.findAll();
     }
 	
+	@GetMapping("/api/user")
+	@ResponseBody
+    public User userByEmail(@RequestParam String userMail) throws Exception {
+		return userService.findByEmail(userMail);
+    }
+	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@PostMapping(path = "/api/login", consumes = "application/json", produces = "application/json")
 	@ResponseBody
