@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.Project;
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.User;
+import ar.edu.unq.desapp.GrupoJ022020.desappapl.model.UserProfile;
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.modelExceptions.UnableToCloseProjectException;
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.modelExceptions.UserTypeActionException;
 import ar.edu.unq.desapp.GrupoJ022020.desappapl.persistence.ProjectRepository;
@@ -22,8 +23,19 @@ public class ProjectService {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private CityService cityService;
+	
 	@Transactional
-	public Project save(Project project) {
+	public Project save(Project project, Long userId, Long cityId) throws UserTypeActionException {
+		if(this.userService.findByID(userId).getProfile().equals(UserProfile.DONOR))
+			throw new UserTypeActionException();
+		project.setCity(cityService.findByID(cityId));
+		return this.repository.save(project);
+	}
+	
+	@Transactional
+	public Project quicksave(Project project) {
 		return this.repository.save(project);
 	}
 	
@@ -32,7 +44,7 @@ public class ProjectService {
 		User user = userService.findByID(userId);
 		Project project = this.findByID(projectId);
 		user.closeProject(project);
-		return this.save(project);
+		return this.quicksave(project);
 	}
 	
 

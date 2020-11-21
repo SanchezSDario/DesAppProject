@@ -37,7 +37,7 @@ public class DonationService {
 		Project project = projectService.findByID(projectId);
 		user.registerDonation(project, donation);
 		this.repository.save(donation);
-		projectService.save(project);
+		projectService.quicksave(project);
 		return userService.save(user);
 	}
 	
