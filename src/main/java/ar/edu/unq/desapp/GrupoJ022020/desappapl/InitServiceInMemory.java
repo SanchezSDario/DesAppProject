@@ -146,5 +146,7 @@ public class InitServiceInMemory {
 		userService.save(admin);
 		User adminDario = new UserAdmin("Dario", "Sanchez", 1000, "dariosebastiansanchez@gmail.com", "SanchezSDario", "SanchezSDario", new HashSet<Project>(), new HashSet<Donation>());
 		userService.save(adminDario);
+		User adminJenami = new UserAdmin("Jimena", "Rosato", 1000, "jimenarosato@gmail.com", "Jenami", "Jenami", new HashSet<Project>(), new HashSet<Donation>());
+		userService.save(adminJenami);
 	}
 }
