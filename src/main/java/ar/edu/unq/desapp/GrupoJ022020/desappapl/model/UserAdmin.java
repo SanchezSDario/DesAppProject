@@ -23,10 +23,9 @@ public class UserAdmin extends User{
 					  String mail,
 					  String userName,
 					  String nickName,
-					  String password, 
 					  Set<Project> projectsDonatedTo, 
 					  Set<Donation> donationsDone) {
-		 super(nombre, apellido, puntos, mail, userName, nickName, password, projectsDonatedTo, donationsDone);
+		 super(nombre, apellido, puntos, mail, userName, nickName, projectsDonatedTo, donationsDone);
 		 this.profile = UserProfile.ADMIN;
 	}
 

@@ -54,9 +54,6 @@ public abstract class User {
 	@Column
 	private String nickName;
 	@Column
-	@ApiModelProperty(required = true)
-	private String password;
-	@Column
 	private Integer points;
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -78,8 +75,7 @@ public abstract class User {
 				Integer puntos, 
 				String mail,
 				String userName,
-				String nickName,
-				String password, 
+				String nickName, 
 				Set<Project> projectsDonatedTo, 
 				Set<Donation> donationsDone) {
 		this.firstName = nombre;
@@ -88,7 +84,6 @@ public abstract class User {
 		this.mail = mail;
 		this.userName = userName;
 		this.nickName = nickName;
-		this.password = password;
 		this.projectsDonatedTo = projectsDonatedTo;
 		this.donationsMade = donationsDone;
 	}
@@ -131,14 +126,6 @@ public abstract class User {
 
 	public void setMail(String mail) {
 		this.mail = mail;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public Set<Project> getProjectsDonatedTo() {

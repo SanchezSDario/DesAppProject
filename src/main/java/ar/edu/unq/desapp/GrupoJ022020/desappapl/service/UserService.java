@@ -46,9 +46,9 @@ public class UserService {
 	}
 	
 	@Transactional
-	public User login(String userMail, String userName, String userPass) throws LoginIncorrectMailUserNameOrPasswordException, InvalidEmailException {
+	public User login(String userMail, String userName) throws LoginIncorrectMailUserNameOrPasswordException, InvalidEmailException {
 		List<User> allUsers = this.findAll();
-		List<User> filteredUser = allUsers.stream().filter(user -> (user.getMail().equals(userMail) || user.getUserName().equals(userName)) && user.getPassword().equals(userPass)).collect(Collectors.toList());
+		List<User> filteredUser = allUsers.stream().filter(user -> (user.getMail().equals(userMail) || user.getUserName().equals(userName))).collect(Collectors.toList());
 		if(!filteredUser.isEmpty()) {
 			return filteredUser.get(0);
 		}
@@ -56,7 +56,7 @@ public class UserService {
 	}
 	
 	@Transactional
-	public User register(String userMail, String userName, String userPass, String userFirstName, String userLastName, String userNickName) throws LoginIncorrectMailUserNameOrPasswordException, InvalidEmailException, RegisterEmailOrUserNameAlreadyExistsException {
+	public User register(String userMail, String userName, String userFirstName, String userLastName, String userNickName) throws LoginIncorrectMailUserNameOrPasswordException, InvalidEmailException, RegisterEmailOrUserNameAlreadyExistsException {
 		validateEmail(userMail);
 		List<User> allUsers = this.findAll();
 		List<User> filteredUser = allUsers.stream().filter(user -> user.getMail().equals(userMail) || user.getUserName().equals(userName)).collect(Collectors.toList());
@@ -67,7 +67,6 @@ public class UserService {
 			newUser.setMail(userMail);
 			newUser.setUserName(userName);
 			newUser.setLastName(userLastName);
-			newUser.setPassword(userPass);
 			newUser.setFirstName(userFirstName);
 			if(userNickName.isEmpty()) 
 				userNickName = userFirstName + userLastName;

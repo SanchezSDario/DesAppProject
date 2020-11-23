@@ -21,7 +21,7 @@ class UserDonorTest {
 	
 	@Test
 	void testUserDonorIsCreatedWithAllItsValues() {
-		User anUser = new UserDonor("nombre", "apellido", 0, "mail", "userName", "nickName", "pass", new HashSet<Project>(), new HashSet<Donation>());
+		User anUser = new UserDonor("nombre", "apellido", 0, "mail", "userName", "nickName",new HashSet<Project>(), new HashSet<Donation>());
 		
 		assertEquals(UserProfile.DONOR, anUser.getProfile());
 		assertEquals("nombre", anUser.getFirstName());
@@ -30,7 +30,6 @@ class UserDonorTest {
 		assertEquals("mail", anUser.getMail());
 		assertEquals("userName", anUser.getUserName());
 		assertEquals("nickName", anUser.getNickName());
-		assertEquals("pass", anUser.getPassword());
 		assertEquals(0, anUser.getProjectsDonatedTo().size());
 		assertEquals(0, anUser.getDonationsMade().size());
 	}
@@ -45,7 +44,6 @@ class UserDonorTest {
 		anUser.setMail("mail");
 		anUser.setUserName("userName");
 		anUser.setNickName("nickName");
-		anUser.setPassword("pass");
 		anUser.setPoints(0);
 		anUser.setProjectsDonatedTo(new HashSet<Project>());
 		anUser.setDonationsMade(new HashSet<Donation>());
@@ -58,7 +56,6 @@ class UserDonorTest {
 		assertEquals("mail", anUser.getMail());
 		assertEquals("userName", anUser.getUserName());
 		assertEquals("nickName", anUser.getNickName());
-		assertEquals("pass", anUser.getPassword());
 		assertEquals(0, anUser.getProjectsDonatedTo().size());
 		assertEquals(0, anUser.getDonationsMade().size());
 	}

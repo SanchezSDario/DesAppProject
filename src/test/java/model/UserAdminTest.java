@@ -22,7 +22,7 @@ class UserAdminTest {
 	
 	@Test
 	void testUserAdminIsCreatedWithAllItsValues() {
-		User anUser = new UserAdmin("nombre", "apellido", 0, "mail", "userName", "nickName", "pass", new HashSet<Project>(), new HashSet<Donation>());
+		User anUser = new UserAdmin("nombre", "apellido", 0, "mail", "userName", "nickName", new HashSet<Project>(), new HashSet<Donation>());
 		
 		assertEquals(UserProfile.ADMIN, anUser.getProfile());
 		assertEquals("nombre", anUser.getFirstName());
@@ -31,7 +31,6 @@ class UserAdminTest {
 		assertEquals("mail", anUser.getMail());
 		assertEquals("userName", anUser.getUserName());
 		assertEquals("nickName", anUser.getNickName());
-		assertEquals("pass", anUser.getPassword());
 		assertEquals(0, anUser.getProjectsDonatedTo().size());
 		assertEquals(0, anUser.getDonationsMade().size());
 	}
@@ -46,7 +45,6 @@ class UserAdminTest {
 		anUser.setMail("mail");
 		anUser.setUserName("userName");
 		anUser.setNickName("nickName");
-		anUser.setPassword("pass");
 		anUser.setPoints(0);
 		anUser.setProjectsDonatedTo(new HashSet<Project>());
 		anUser.setDonationsMade(new HashSet<Donation>());
@@ -59,7 +57,6 @@ class UserAdminTest {
 		assertEquals("mail", anUser.getMail());
 		assertEquals("userName", anUser.getUserName());
 		assertEquals("nickName", anUser.getNickName());
-		assertEquals("pass", anUser.getPassword());
 		assertEquals(0, anUser.getProjectsDonatedTo().size());
 		assertEquals(0, anUser.getDonationsMade().size());
 	}

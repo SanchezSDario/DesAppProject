@@ -136,15 +136,15 @@ public class InitServiceInMemory {
 		donation.setDonationDate(LocalDate.parse("2020-11-03"));
 		Donation donation1 = new Donation(1000d, "Nueva donacion");
 		donation1.setDonationDate(LocalDate.parse("2020-11-03"));
-		User pepita = new UserDonor("Pepita", "Paloma", 1000, "pepita@mail.com", "pepitaDonor", "Pepita", "nacer", new HashSet<Project>(), new HashSet<Donation>());
+		User pepita = new UserDonor("Pepita", "Paloma", 1000, "pepita@mail.com", "pepitaDonor", "Pepita", new HashSet<Project>(), new HashSet<Donation>());
 		userService.save(pepita);
 		
 		donationService.donate(pepita.getId(), project1.getId(), donation);
 		donationService.donate(pepita.getId(), project17.getId(), donation1);
 		
-		User admin = new UserAdmin("Admin", "Admin", 1000, "admin@admin.com", "admin", "admin", "admin", new HashSet<Project>(), new HashSet<Donation>());
+		User admin = new UserAdmin("Admin", "Admin", 1000, "admin@admin.com", "admin", "admin", new HashSet<Project>(), new HashSet<Donation>());
 		userService.save(admin);
-		User adminDario = new UserAdmin("Dario", "Sanchez", 1000, "dariosebastiansanchez@gmail.com", "SanchezSDario", "SanchezSDario", "DesappPassDario", new HashSet<Project>(), new HashSet<Donation>());
+		User adminDario = new UserAdmin("Dario", "Sanchez", 1000, "dariosebastiansanchez@gmail.com", "SanchezSDario", "SanchezSDario", new HashSet<Project>(), new HashSet<Donation>());
 		userService.save(adminDario);
 	}
 }
