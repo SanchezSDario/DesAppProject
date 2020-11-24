@@ -36,7 +36,7 @@ public class UserDonor extends User{
 		project.addDonation(donation);
 		this.addDonation(donation);
 		PointManager.addPointsToUser(this, project, donation);
-		
+		donation.setDonorUser(this.getNickName());
 		return donation;
 	}
 

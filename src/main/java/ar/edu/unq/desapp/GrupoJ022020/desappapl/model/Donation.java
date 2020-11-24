@@ -28,14 +28,17 @@ public class Donation {
 	@Column
 	@ApiModelProperty(required = true)
 	private LocalDate donationDate;
+	@Column
+	private String donorNickname;
 	
 	public Donation() {
 		
 	}
 
-	public Donation(Double amount, String comment) {
+	public Donation(Double amount, String comment, String donorNickname) {
 		this.amount = amount;
 		this.comment = comment;
+		this.donorNickname = donorNickname;
 	}
 
 	public Long getId() {
@@ -68,5 +71,13 @@ public class Donation {
 
 	public void setDonationDate(LocalDate donationDate) {
 		this.donationDate = donationDate;
+	}
+
+	public String getDonorUser() {
+		return donorNickname;
+	}
+
+	public void setDonorUser(String donorNickname) {
+		this.donorNickname = donorNickname;
 	}
 }

@@ -132,9 +132,13 @@ public class InitServiceInMemory {
 		City city19 = new City("Ramos Mejía", "Buenos Aires", "Conectado", 1500);
 		cityService.quicksave(city19);
 		
-		Donation donation = new Donation(1000d, "Nueva donacion");
+		Donation donation = new Donation();
+		donation.setAmount(1000d);
+		donation.setComment("Nueva donacion");
 		donation.setDonationDate(LocalDate.parse("2020-11-03"));
-		Donation donation1 = new Donation(1000d, "Nueva donacion");
+		Donation donation1 = new Donation();
+		donation1.setAmount(1000d);
+		donation1.setComment("Nueva donacion");
 		donation1.setDonationDate(LocalDate.parse("2020-11-03"));
 		User pepita = new UserDonor("Pepita", "Paloma", 1000, "pepita@mail.com", "pepitaDonor", "Pepita", new HashSet<Project>(), new HashSet<Donation>());
 		userService.save(pepita);
