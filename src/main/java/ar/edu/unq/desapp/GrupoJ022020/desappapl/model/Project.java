@@ -1,6 +1,9 @@
 package ar.edu.unq.desapp.GrupoJ022020.desappapl.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -43,22 +47,31 @@ public class Project {
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@ApiModelProperty(required = true)
 	private City city;
+	@OneToMany(fetch = FetchType.LAZY)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private List<Donation> donationsRegistered;
 	@Column
 	private Double totalRaised;
+	@Column
+	private Boolean isClosed;
 	
 	public Project() {
 		this.totalRaised = 0d;
+		this.isClosed = false;
+		this.donationsRegistered = new ArrayList<Donation>();
 	}
 
 	public Project(Integer factor, Integer minClosingPercentage, String name, LocalDate startDate,
-			LocalDate endDate, City city, Double totalRaised) {
+			LocalDate endDate, City city, List<Donation> donationsRegistered, Double totalRaised) {
 		this.factor = factor;
 		this.minClosingPercentage = minClosingPercentage;
 		this.name = name;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.city = city;
+		this.donationsRegistered = donationsRegistered;
 		this.totalRaised = totalRaised;
+		this.isClosed = false;
 	}
 
 	public Long getId() {
@@ -122,6 +135,14 @@ public class Project {
 	public void setCity(City city) {
 		this.city = city;
 	}
+	
+	public List<Donation> getDonationsRegistered() {
+		return donationsRegistered;
+	}
+
+	public void setDonationsRegistered(List<Donation> donationsRegistered) {
+		this.donationsRegistered = donationsRegistered;
+	}
 
 	public Double getTotalRaised() {
 		return totalRaised;
@@ -131,23 +152,39 @@ public class Project {
 		this.totalRaised = totalRaised;
 	}
 	
-	/*METHODS*/
+	public Boolean getIsClosed() {
+		return isClosed;
+	}
+
+	public void setIsClosed(Boolean isClosed) {
+		this.isClosed = isClosed;
+	}
 	
+	/*METHODS*/
+
 	public Double getTotalCost() {
 		return (double) (this.factor * this.city.getPopulation());
 	}
 	
-	public void addDonation(Double amount) {
-		this.totalRaised += amount; 
-	}
-	
-	public Boolean isClosed() {
-		LocalDate date = LocalDate.now();
-		return this.endDate.isBefore(date) || this.totalRaised >= this.getTotalCost(); 
+	public void addDonation(Donation donation) {
+		this.donationsRegistered.add(donation);
+		this.totalRaised += donation.getAmount(); 
 	}
 	
 	public Integer remainingPercentageToComplete() {
 		return (int) (100 - (this.totalRaised / this.getTotalCost() * 100));
+	}
+	
+	public Donation getDonationWithEarlierDonationDate(){
+		if(this.donationsRegistered.isEmpty()) {
+			return null;
+		}
+		if(this.donationsRegistered.size() == 1) {
+			return this.donationsRegistered.get(0);
+		}
+		return this.donationsRegistered.stream()
+		 		.sorted((donation1, donation2) -> donation2.getDonationDate().compareTo(donation1.getDonationDate()))
+		 		.limit(1).collect(Collectors.toList()).get(0);
 	}
 }
 
